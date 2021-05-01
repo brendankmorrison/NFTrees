@@ -990,9 +990,9 @@ abstract contract Ownable is ERC721URIStorage {
 }
 
 pragma solidity ^0.8.0;
-/* Contract for Cryptonauts */
+/* Contract for NFtrees */
 
-contract Cryptonaut is Ownable{
+contract NFTree is Ownable{
     uint256 public hardCap;
     uint256 public currentPrice;
     bool public locked;

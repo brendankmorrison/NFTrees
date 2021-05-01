@@ -79,7 +79,7 @@ module.exports = {
     // timeout: 100000
   },
 
-  contracts_build_directory: "./cryptonauts-app/src/contracts",
+  contracts_build_directory: "./NFTrees-app/src/contracts",
 
   // Configure your compilers
   compilers: {

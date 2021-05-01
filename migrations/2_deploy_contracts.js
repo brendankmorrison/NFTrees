@@ -1,5 +1,5 @@
-const Cryptonaut = artifacts.require("Cryptonaut");
+const NFTree = artifacts.require("NFTree");
 
 module.exports = function (deployer) {
-  deployer.deploy(Cryptonaut);
+  deployer.deploy(NFTree);
 };
