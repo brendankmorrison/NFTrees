@@ -1000,7 +1000,7 @@ contract NFTree is Ownable{
     
     constructor() 
 
-    ERC721('Cryptonaut', 'CRTN')
+    ERC721('NFTree', 'TREE')
     {
         hardCap = 1000;
         currentPrice = 1 * (10 ** 18); // 1 ether
@@ -1008,8 +1008,8 @@ contract NFTree is Ownable{
         tokenId = 1;
     }
 
-    function buyCryptonaut(string memory tokenHash) public payable {
-        require(!locked, 'Buying Cryptonauts is locked.');
+    function buyNFTree(string memory tokenHash) public payable {
+        require(!locked, 'Buying NFTrees is locked.');
         require(msg.sender != address(0) && msg.sender != address(this));
         require(msg.value >= currentPrice, 'Not enough ether.');
         require(!_exists(tokenId), 'Token already minted.');
@@ -1027,16 +1027,16 @@ contract NFTree is Ownable{
             return new uint256[](0);
         } else {
             uint256[] memory result = new uint256[](tokenCount);
-            uint256 totalCryptonauts = tokenId - 1;
+            uint256 totalNFTrees = tokenId - 1;
             uint256 resultIndex = 0;
 
             // We count on the fact that all cats have IDs starting at 1 and increasing
             // sequentially up to the totalCat count.
-            uint256 cryptonautId;
+            uint256 NFTreeId;
 
-            for (cryptonautId = 1; cryptonautId <= totalCryptonauts; cryptonautId++) {
-                if (ownerOf(cryptonautId) == _owner) {
-                    result[resultIndex] = cryptonautId;
+            for (NFTreeId = 1; NFTreeId <= totalNFTrees; NFTreeId++) {
+                if (ownerOf(NFTreeId) == _owner) {
+                    result[resultIndex] = NFTreeId;
                     resultIndex++;
                 }
             }
