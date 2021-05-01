@@ -1,5 +1,5 @@
 import React ,{useEffect, useState} from 'react';
-import CryptonautCard from './PageItems/CryptonautCard';
+import NFTreeCard from './PageItems/NFTreeCard';
 import './Wallet.css';
 
 function Wallet (props){
@@ -26,11 +26,11 @@ function Wallet (props){
 
     return(
         <div className = 'walletContainer'>
-            <div className = 'title'> YOUR CRYPTONAUTS </div>
+            <div className = 'title'> YOUR NFTREES </div>
 
-            {/*displayCryptonauts()*/}
+            {/*displayNFTrees()*/}
             <div className = 'cards'>
-                {images.map(image => <CryptonautCard image = {image}/>)}
+                {images.map(image => <NFTreeCard image = {image}/>)}
             </div>
         </div>
 

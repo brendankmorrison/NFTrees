@@ -1,7 +1,7 @@
 // base imports
 import React ,{useEffect, useState} from 'react';
 import './App.css';
-import CryptonautABI from './contracts/Cryptonaut.json';
+import NFTreeABI from './contracts/NFTree.json';
 
 // import packages
 import Web3 from 'web3';
@@ -16,7 +16,6 @@ import {
 import Navbar from './components/Navigation/Navbar';
 import Navigation from './components/Navigation/Navigation';
 import Home from './components/Pages/Home';
-import Gallery from './components/Pages/Gallery';
 import Wallet from './components/Pages/Wallet';
 import About from './components/Pages/About';
 import Background from './components/Navigation/Background';
@@ -24,7 +23,7 @@ import Background from './components/Navigation/Background';
 function App() {
   const[Currentaccount, setCurrentaccount] = useState("connect eth account.");
   const[Currentnetwork, setCurrentnetwork] = useState(0);
-  const[cryptonautContract, setCryptonautContract] = useState();
+  const[NFTreeContract, setNFTreeContract] = useState();
   const[nextTokenId, setNextTokenId] = useState();
   const[navIsOpen, toggleNav] = useState(false);
   const[isLoading, setLoading] = useState(false);
@@ -92,13 +91,13 @@ function App() {
     }
 
     // get smart contracts
-    const networkData = CryptonautABI.networks[networkId];
+    const networkData = NFTreeABI.networks[networkId];
     if(networkData){
       
-      setCryptonautContract(await new web3.eth.Contract(CryptonautABI.abi, networkData.address));
+      setNFTreeContract(await new web3.eth.Contract(NFTreeABI.abi, networkData.address));
 
       /* do not know why i need to do this */
-      let contract = await new web3.eth.Contract(CryptonautABI.abi, networkData.address);
+      let contract = await new web3.eth.Contract(NFTreeABI.abi, networkData.address);
       setNextTokenId(await contract.methods.getNextTokenId().call());
     }else{
       window.alert('Contract Not Deployed')
@@ -133,40 +132,40 @@ function App() {
   const mintToken = async () => {
     // get next metadata hash
 
-    // call buyCryptonaut function
-    await cryptonautContract.methods.buyCryptonaut('QmfUShAbxfXecoxySb9JiMH1Lb8URUw2Cse9Usj5vZmeej').send({from: Currentaccount, value: 10**18});
-    //await cryptonautContract.methods.sendTo(Currentaccount).send({from: Currentaccount});
-    console.log('contract balance', await cryptonautContract.methods.getContractBalance().call());
+    // call buyNFTree function
+    await NFTreeContract.methods.buyNFTree('QmfUShAbxfXecoxySb9JiMH1Lb8URUw2Cse9Usj5vZmeej').send({from: Currentaccount, value: 10**18});
+    //await NFTreeContract.methods.sendTo(Currentaccount).send({from: Currentaccount});
+    console.log('contract balance', await NFTreeContract.methods.getContractBalance().call());
 
     // if transaction went through mark metadata hash as used
 
     // update next token id
-    setNextTokenId(await cryptonautContract.methods.getNextTokenId().call());
+    setNextTokenId(await NFTreeContract.methods.getNextTokenId().call());
   }
 
   const searchAddress = async () => {
     let tokens = [];
     let balance = 0;
-    balance = await cryptonautContract.methods.balanceOf(Currentaccount).call();
+    balance = await NFTreeContract.methods.balanceOf(Currentaccount).call();
     if(balance >= 1){
-      tokens = await cryptonautContract.methods.tokensOfOwner(Currentaccount).call();
+      tokens = await NFTreeContract.methods.tokensOfOwner(Currentaccount).call();
     } else {
-      //alert('This address does not own any cryptonauts.');
+      //alert('This address does not own any NFTrees.');
     }
     return(tokens);
   }
 
   const getToken = async (tokenId) => {
-    //fetch(await cryptonautContract.methods.tokenURI(1).call())
+    //fetch(await NFTreeContract.methods.tokenURI(1).call())
       //.then(response => response.json())
       //.then(data => console.log(data));
     console.log('getToken');
-    return(await cryptonautContract.methods.tokenURI(1).call());
+    return(await NFTreeContract.methods.tokenURI(1).call());
     
   }
 
   const getOwner = async (tokenId) => {
-    return(await cryptonautContract.methods.ownerOf(tokenId).call());
+    return(await NFTreeContract.methods.ownerOf(tokenId).call());
   }
 
   return (
@@ -182,9 +181,6 @@ function App() {
         <Switch>
           <Route exact path= "/">
             <Home onClick = {closeNav} mintToken = {mintToken} nextTokenId = {nextTokenId}/>
-          </Route>
-          <Route path="/gallery">
-            <Gallery onClick = {closeNav} nextTokenId = {nextTokenId} getToken = {getToken} getOwner = {getOwner}/>
           </Route>
           <Route path="/wallet">
             <Wallet onClick = {closeNav} getToken = {getToken} searchAddress = {searchAddress}/>

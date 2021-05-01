@@ -1,7 +1,7 @@
 import React from 'react';
-import './CryptonautCard.css'
+import './NFTreeCard.css'
 
-function CryptonautCard(props){
+function NFTreeCard(props){
 
     return(
         <div className = 'card'>
@@ -11,4 +11,4 @@ function CryptonautCard(props){
     );
 }
 
-export default CryptonautCard;
+export default NFTreeCard;

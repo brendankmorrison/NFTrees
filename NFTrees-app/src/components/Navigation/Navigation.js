@@ -13,7 +13,6 @@ function Navigation (props){
                 <a className = 'externalLink my-auto' href = 'https://discord.gg/pJxyuzB5wc' target = "_blank"> <RiDiscordLine size = {20}/> </a>
             </div>
             <Link className = "link my-auto rounded" to = '/'> HOME </Link>
-            <Link className = "link my-auto rounded" to = '/gallery'> GALLERY </Link>
             <Link className = "link my-auto rounded" to = '/wallet'> WALLET </Link>
             <Link className = "link my-auto rounded" to = '/about'> ABOUT </Link>
         
