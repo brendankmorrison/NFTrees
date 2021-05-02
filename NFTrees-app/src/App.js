@@ -26,26 +26,19 @@ function App() {
   const[NFTreeContract, setNFTreeContract] = useState();
   const[nextTokenId, setNextTokenId] = useState();
   const[navIsOpen, toggleNav] = useState(false);
-  const[isLoading, setLoading] = useState(false);
+  const[isLoading, setLoading] = useState(true);
 
-  useEffect(async () => {
-
-    console.log('useeffect');
-    // initialize web3 on mount
-    await loadWeb3();
-
-    // load blockchainData if metamask wallet is detected
-    if (window.web3){
-      await loadBlockchainData();
-    }
+  useEffect(() => {
+    // initialize web3 and load blockchain data
+    load();
 
     // reload blockchainData on metamask accountsChanged event
-    await window.ethereum.on('accountsChanged', function (accounts) {
+    window.ethereum.on('accountsChanged', function (accounts) {
       loadBlockchainData(); 
     });
 
     // reload blockchainData on metamask networkChanged event
-    await window.ethereum.on('networkChanged', function (accounts) {
+    window.ethereum.on('networkChanged', function (accounts) {
       loadBlockchainData();
     });
     console.log('end of useeffect');
@@ -59,7 +52,6 @@ function App() {
   const loadWeb3 = async () => {
     if(window.ethereum) {
       window.web3 = new Web3(window.ethereum);
-      await window.ethereum.enable();
     } else if (window.web3) {
       window.web3 = new Web3(window.web3.currentProvider);
     } else {
@@ -67,12 +59,30 @@ function App() {
         'no ethereum wallet detected.'
       );
     }
+    await window.ethereum.enable();
+  };
+
+  // run loadWeb3
+  const load = async () => {
+    await loadWeb3();
+    await loadBlockchainData();
   };
 
   // load ethereum accounts, network, and smart contracts 
   const loadBlockchainData = async () => {
     // initialize web3
     const web3 = window.web3;
+
+    if(window.ethereum) {
+      const web3 = new Web3(window.ethereum);
+      await window.ethereum.enable();
+    } else if (window.web3) {
+      const web3 = new Web3(window.web3.currentProvider);
+    } else {
+      window.alert(
+        'no ethereum wallet detected.'
+      );
+    }
 
     // fetch user eth account
     const accounts = await web3.eth.getAccounts();
@@ -162,10 +172,6 @@ function App() {
     console.log('getToken');
     return(await NFTreeContract.methods.tokenURI(1).call());
     
-  }
-
-  const getOwner = async (tokenId) => {
-    return(await NFTreeContract.methods.ownerOf(tokenId).call());
   }
 
   return (

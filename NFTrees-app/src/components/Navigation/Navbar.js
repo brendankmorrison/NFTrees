@@ -26,9 +26,9 @@ function Navbar (props){
 
 
     return(
-        <nav className = 'navbar navbar-dark bg-dark shadow rounded'>
+        <nav className = 'navbar'>
             {/* display navbar links */}
-            <Link className = "navbar-Brand my-auto text-white" to = '/'> NFTREES </Link>
+            <Link className = "navbar-Brand my-auto" to = '/'> NFTrees </Link>
 
             <p className = 'spacer'/>
             {/* display user address */}

@@ -7,7 +7,7 @@ function BuyNFTree (props){
     }
 
     return(
-        <div className = 'buy rounded-pill' onClick = {handleBuyNFTree}> 
+        <div className = 'buy' onClick = {handleBuyNFTree}> 
             {'PLANT NFTREE'}
         </div>
     );
