@@ -6,7 +6,15 @@ function Home (props){
 
     return(
         <div className = 'homeContainer'>
-            <BuyNFTree mintToken = {props.mintToken} nextTokenId = {props.nextTokenId}/>
+            <div className = 'homeContent'>
+                <div className = 'homeLeft'>
+                    <div>
+                        <BuyNFTree mintToken = {props.mintToken} nextTokenId = {props.nextTokenId}/>
+                    </div>
+                </div>
+                <div className = 'spacer'></div>
+                <div className = 'homeRight'>hello</div>
+            </div>
         </div>
     );
 }

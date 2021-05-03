@@ -17,6 +17,7 @@ import Navbar from './components/Navigation/Navbar';
 import Home from './components/Pages/Home';
 import Wallet from './components/Pages/Wallet';
 import About from './components/Pages/About';
+import Footer from './components/Pages/Footer';
 
 function App() {
   const[Currentaccount, setCurrentaccount] = useState("connect eth account.");
@@ -122,7 +123,7 @@ function App() {
   const closeNav = () => {
     toggleNav(false);
   }
-  
+
   const navTransition = useTransition(navIsOpen, null, {
     from: { position: 'absolute', opacity: 0 , transform: 'translate3d(100%,0,0)' },
     enter: { opacity: 1, transform: 'translate3d(0%,0,0)' },
@@ -170,24 +171,24 @@ function App() {
     <div className = 'App'>
       <Router>
         {/* display navbar */}
-        <Navbar account = {Currentaccount} click = {toggleNavHandler} navIsOpen = {navIsOpen}/>
+        <Navbar account = {Currentaccount}/>
 
         {/* depending on url display home, gallery, or about page */}
         <Switch>
           <Route exact path= "/">
-            <Home onClick = {closeNav} mintToken = {mintToken} nextTokenId = {nextTokenId}/>
+            <Home mintToken = {mintToken} nextTokenId = {nextTokenId}/>
           </Route>
           <Route path="/wallet">
-            <Wallet onClick = {closeNav} getToken = {getToken} searchAddress = {searchAddress}/>
+            <Wallet getToken = {getToken} searchAddress = {searchAddress}/>
           </Route>
           <Route path="/about">
-            <About onClick = {closeNav}/>
+            <About />
           </Route>
         </Switch>
 
 
       </Router>
-
+        <Footer />
     </div>
 
   );

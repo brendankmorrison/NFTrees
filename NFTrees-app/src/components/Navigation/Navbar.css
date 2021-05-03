@@ -24,12 +24,27 @@ nav{
 .navbar-Link{
     font-size: 15px;
     color: #8f7c72;
+    height: 100%;
+    padding-top:5px;
+    width: 60px;
+    text-align: center;
+    height: 100%;
 }
 
-.navbar-Link:hover{
+/*.navbar-Link:hover{
     font-size: 15px;
     color: #8f7c72;
-}
+}*/
+
+.navbar-Link:hover {
+    text-decoration: none;
+    font-size: 15px;
+    color: #8f7c72;
+    border-bottom-style: solid;
+    border-bottom-width: 5px;
+    transition: 0.1s;
+    border-bottom-color: #9dba94;
+  }
 
 .spacer{
     flex:1;
