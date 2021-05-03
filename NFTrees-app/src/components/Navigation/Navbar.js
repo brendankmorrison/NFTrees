@@ -25,7 +25,7 @@ function Navbar (props){
             <p className = 'spacer'/>
             <Link className = "navbar-Link my-auto" to = '/'> Home </Link>
             <p className = 'spacer'/>
-            <Link className = "navbar-Link my-auto" to = '/home'> Plant </Link>
+            <Link className = "navbar-Link my-auto" to = '/plant'> Plant </Link>
             <p className = 'spacer'/>
             <Link className = "navbar-Link my-auto" to = '/wallet'> Wallet </Link>
             <p className = 'spacer'/>

@@ -15,6 +15,7 @@ import {
 // import components
 import Navbar from './components/Navigation/Navbar';
 import Home from './components/Pages/Home';
+import Plant from './components/Pages/Plant';
 import Wallet from './components/Pages/Wallet';
 import About from './components/Pages/About';
 import Footer from './components/Pages/Footer';
@@ -177,18 +178,19 @@ function App() {
         <Switch>
           <Route exact path= "/">
             <Home mintToken = {mintToken} nextTokenId = {nextTokenId}/>
+            <Plant />
+            <Footer />
           </Route>
           <Route path="/wallet">
             <Wallet getToken = {getToken} searchAddress = {searchAddress}/>
+            <Footer />
           </Route>
           <Route path="/about">
             <About />
+            <Footer />
           </Route>
         </Switch>
-
-
       </Router>
-        <Footer />
     </div>
 
   );

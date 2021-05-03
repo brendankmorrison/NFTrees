@@ -5,7 +5,7 @@ function  Footer (props){
 
     return(
         <div className = 'footerContainer'>
-            <p> hello</p>
+            <p> Footer</p>
         </div>
     );
 }
