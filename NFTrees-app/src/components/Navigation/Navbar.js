@@ -1,9 +1,8 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import {GiHamburgerMenu} from 'react-icons/gi';
-import {AiOutlineClose} from 'react-icons/ai';
 import './Navbar.css'
-import {useTransition, animated} from 'react-spring'
+import {RiDiscordLine, RiTwitterLine} from 'react-icons/ri';
+import { IconContext } from "react-icons";
 
 function Navbar (props){
 
@@ -18,28 +17,24 @@ function Navbar (props){
         }
     }
 
-    const transitions = useTransition(!props.navIsOpen, null, {
-        from: { position: 'absolute', opacity: 0 },
-        enter: { opacity: 1 },
-        leave: { opacity: 0 },
-    })
-
 
     return(
         <nav className = 'navbar'>
             {/* display navbar links */}
             <Link className = "navbar-Brand my-auto" to = '/'> NFTrees </Link>
-
             <p className = 'spacer'/>
+            <Link className = "navbar-Link my-auto" to = '/'> Home </Link>
+            <p className = 'spacer'/>
+            <Link className = "navbar-Link my-auto" to = '/home'> Plant </Link>
+            <p className = 'spacer'/>
+            <Link className = "navbar-Link my-auto" to = '/wallet'> Wallet </Link>
+            <p className = 'spacer'/>
+            <Link className = "navbar-Link my-auto" to = '/about'> About </Link>
+            <p className = 'spacer'/>
+
             {/* display user address */}
             <p className = "address my-auto"> {substringAddress()} </p>
 
-            {/* nav icon */}
-            <div onClick = {props.click} className = 'nav-icon my-auto'>{transitions.map(({ item, key, props }) => 
-            item
-            ? <animated.div style={props}> <GiHamburgerMenu/> </animated.div>
-            : <animated.div style={props}> <AiOutlineClose/> </animated.div>
-            )}</div>
         </nav>
     );
 }

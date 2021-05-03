@@ -14,11 +14,9 @@ import {
 
 // import components
 import Navbar from './components/Navigation/Navbar';
-import Navigation from './components/Navigation/Navigation';
 import Home from './components/Pages/Home';
 import Wallet from './components/Pages/Wallet';
 import About from './components/Pages/About';
-import Background from './components/Navigation/Background';
 
 function App() {
   const[Currentaccount, setCurrentaccount] = useState("connect eth account.");
@@ -124,13 +122,7 @@ function App() {
   const closeNav = () => {
     toggleNav(false);
   }
-
-  const displayBackground = () => {
-    if (navIsOpen){
-      return(<Background click = {closeNav}/>)
-    }
-  }
-
+  
   const navTransition = useTransition(navIsOpen, null, {
     from: { position: 'absolute', opacity: 0 , transform: 'translate3d(100%,0,0)' },
     enter: { opacity: 1, transform: 'translate3d(0%,0,0)' },
@@ -180,9 +172,6 @@ function App() {
         {/* display navbar */}
         <Navbar account = {Currentaccount} click = {toggleNavHandler} navIsOpen = {navIsOpen}/>
 
-        {/* display background and navigation if navIsOpen is true */}
-        {displayBackground()} 
-
         {/* depending on url display home, gallery, or about page */}
         <Switch>
           <Route exact path= "/">
@@ -195,13 +184,7 @@ function App() {
             <About onClick = {closeNav}/>
           </Route>
         </Switch>
-        
-        {/*displayNavigation()*/} 
-        {navTransition.map(({ item, key, props }) => item && 
-        <animated.div key={key} style={props} className = 'animation'> 
-          <Background click = {closeNav}/>
-          <Navigation/> 
-        </animated.div>)}
+
 
       </Router>
 
