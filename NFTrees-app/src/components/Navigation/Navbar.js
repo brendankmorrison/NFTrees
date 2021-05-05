@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import './Navbar.css'
 import {RiDiscordLine, RiTwitterLine} from 'react-icons/ri';
 import { IconContext } from "react-icons";
@@ -16,12 +16,10 @@ function Navbar (props){
             return(props.account)
         }
     }
-
-
     return(
         <nav className = 'navbar'>
             {/* display navbar links */}
-            <Link className = "navbar-Brand my-auto" to = '/'> NFTrees </Link>
+            <Link className = "navbar-Link my-auto" to = '/'> NFTrees </Link>
             <p className = 'spacer'/>
             <Link className = "navbar-Link my-auto" to = '/'> Home </Link>
             <p className = 'spacer'/>
