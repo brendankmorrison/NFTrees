@@ -18,7 +18,7 @@ function Home (props){
                         est laborum.
                     </p>
                     <button>Plant NFTree</button>
-                    <p>1*** trees planted</p>
+                    <p></p>
                 </div>
                 <div className = 'spacer'></div>
                 <div className = 'homeRight'>

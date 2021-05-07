@@ -14,7 +14,7 @@ function Wallet (props){
         let tokenImages= []; 
         if(tokenList.length == 0){
             // set token images to no cryptonauts image
-            alert('no cwyptonauts');
+            //alert('no cwyptonauts');
         }
         else {
             for(let token = 0; token < tokenList.length; token ++){

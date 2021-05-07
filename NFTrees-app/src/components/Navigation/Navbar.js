@@ -19,15 +19,15 @@ function Navbar (props){
     return(
         <nav className = 'navbar'>
             {/* display navbar links */}
-            <Link className = "navbar-Link my-auto" to = '/'> NFTrees </Link>
+            <NavLink exact className = "navbar-Brand my-auto" to = '/'> NFTrees </NavLink>
             <p className = 'spacer'/>
-            <Link className = "navbar-Link my-auto" to = '/'> Home </Link>
+            <NavLink exact activeClassName = "active-navbar-Link my-auto" className = "navbar-Link my-auto" to = '/'> Home </NavLink>
             <p className = 'spacer'/>
-            <Link className = "navbar-Link my-auto" to = '/plant'> Plant </Link>
+            <NavLink exact activeClassName = "active-navbar-Link my-auto" className = "navbar-Link my-auto" to = '/plant'> Plant </NavLink>
             <p className = 'spacer'/>
-            <Link className = "navbar-Link my-auto" to = '/wallet'> Wallet </Link>
+            <NavLink exact activeClassName = "active-navbar-Link my-auto" className = "navbar-Link my-auto" to = '/wallet'> Wallet </NavLink>
             <p className = 'spacer'/>
-            <Link className = "navbar-Link my-auto" to = '/about'> About </Link>
+            <NavLink exact activeClassName = "active-navbar-Link my-auto" className = "navbar-Link my-auto" to = '/about'> About </NavLink>
             <p className = 'spacer'/>
 
             {/* display user address */}

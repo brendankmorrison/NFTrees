@@ -9,37 +9,47 @@ nav{
 .navbar{
     background-color: #f5f5f5;
     height: 50px;
+    padding-bottom: 0;
 }
 
 .navbar-Brand{
     font-size: 25px;
     color: #8f7c72;
+    width: 100px;
 }
 
 .navbar-Brand:hover{
-    font-size: 25px;
     color: #8f7c72;
+    text-decoration: none;
 }
 
 .navbar-Link{
+    text-align: center;
+    text-decoration: none;
     font-size: 15px;
     color: #8f7c72;
+    width: 100px;
+    padding-top: 10px;
     height: 100%;
-    padding-top:5px;
-    width: 60px;
-    text-align: center;
-    height: 100%;
-}
+} 
 
 .navbar-Link:hover {
     text-decoration: none;
-    font-size: 15px;
     color: #8f7c72;
     border-bottom-style: solid;
     border-bottom-width: 5px;
     transition: 0.1s;
     border-bottom-color: #9dba94;
   }
+
+.active-navbar-Link {
+    text-decoration: none;
+    color: #8f7c72;
+    border-bottom-style: solid;
+    border-bottom-width: 5px;
+    transition: 0.1s;
+    border-bottom-color: #9dba94;
+}
 
 .spacer{
     flex:1;
@@ -49,36 +59,4 @@ nav{
     color: #8f7c72;
     padding-right: 10px;
     font-size: 15px;
-}
-
-.navbar-Brand:hover{
-    text-decoration:none;
-}
-
-.nav-icon{
-    height: 24px;
-    width: 12px;
-    text-align: center;
-}
-
-.nav-icon:hover{
-    cursor: pointer;
-}
-
-.externalLinkWrapper{
-    height:30px;
-    color: #FFF;
-    text-align:center;
-}
-
-.externalLink{
-    color: #8f7c72;
-    padding:10px;
-}
-
-.externalLink:hover{
-    text-decoration: none;
-    color:darkslategray;
-    font-weight: 3000;
-    transition:1s;
 }
