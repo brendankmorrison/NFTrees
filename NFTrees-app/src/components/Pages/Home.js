@@ -1,6 +1,7 @@
 import React from 'react';
 import './Home.css';
 import sample from './sample.jpeg';
+import {Link, NavLink} from "react-router-dom";
 
 function Home (props){
 
@@ -9,15 +10,11 @@ function Home (props){
             <div className = 'homeContent'>
                 <div className = 'homeLeft'>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-                        nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit 
-                        in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
-                        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id 
-                        est laborum.
+                        NFTrees is the first carbon negative NFT digital art collection. 100% of the proceeds will 
+                        be donated to plant trees all over the world. Each token is proof of donation, and the 
+                        corresponding number of trees planted is designatd on the top left corner of the card.  
                     </p>
-                    <button>Plant NFTree</button>
+                    <NavLink exact className = "plant-Link my-auto" to = '/plant'> Plant NFTree </NavLink>
                     <p></p>
                 </div>
                 <div className = 'spacer'></div>

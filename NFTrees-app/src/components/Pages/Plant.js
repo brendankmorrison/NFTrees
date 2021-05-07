@@ -8,6 +8,10 @@ function Plant (props){
         <div className = 'plantContainer'>
             <div className = 'plantContent'>
                 <BuyNFTree mintToken = {props.mintToken} nextTokenId = {props.nextTokenId}/>
+                <BuyNFTree mintToken = {props.mintToken} nextTokenId = {props.nextTokenId}/>
+                <BuyNFTree mintToken = {props.mintToken} nextTokenId = {props.nextTokenId}/>
+                <BuyNFTree mintToken = {props.mintToken} nextTokenId = {props.nextTokenId}/>
+                <BuyNFTree mintToken = {props.mintToken} nextTokenId = {props.nextTokenId}/>
             </div>
         </div>
     );
