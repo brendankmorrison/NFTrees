@@ -178,7 +178,10 @@ function App() {
         <Switch>
           <Route exact path= "/">
             <Home mintToken = {mintToken} nextTokenId = {nextTokenId}/>
-            <Plant />
+            <Footer />
+          </Route>
+          <Route exact path= "/plant">
+            <Plant/>
             <Footer />
           </Route>
           <Route path="/wallet">
