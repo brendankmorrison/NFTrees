@@ -1,8 +1,6 @@
 import React from 'react';
 import {Link, NavLink} from "react-router-dom";
 import './Navbar.css'
-import {RiDiscordLine, RiTwitterLine} from 'react-icons/ri';
-import { IconContext } from "react-icons";
 
 function Navbar (props){
 
