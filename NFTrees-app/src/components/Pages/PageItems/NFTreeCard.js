@@ -6,7 +6,7 @@ function NFTreeCard(props){
     return(
         <div className = 'card'>
             <img src= {props.image} alt="alternatetext"
-            width = '400' height = '400' className = 'image rounded'></img>
+            width = '300' className = 'image'></img>
         </div>
     );
 }

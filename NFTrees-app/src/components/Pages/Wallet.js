@@ -1,6 +1,7 @@
 import React ,{useEffect, useState} from 'react';
 import NFTreeCard from './PageItems/NFTreeCard';
 import './Wallet.css';
+import sample from './sample.jpeg';
 
 function Wallet (props){
     const [images, setImages] = useState([]);
@@ -13,8 +14,13 @@ function Wallet (props){
         let tokenList = await props.searchAddress();
         let tokenImages= []; 
         if(tokenList.length == 0){
-            // set token images to no cryptonauts image
-            //alert('no cwyptonauts');
+            // set token images to default image
+            tokenImages.push(sample)
+            tokenImages.push(sample)
+            tokenImages.push(sample)
+            tokenImages.push(sample)
+            tokenImages.push(sample)
+
         }
         else {
             for(let token = 0; token < tokenList.length; token ++){
@@ -26,11 +32,16 @@ function Wallet (props){
 
     return(
         <div className = 'walletContainer'>
-            <div className = 'title'> YOUR NFTREES </div>
+            <div className = 'title'> Your NFTrees </div>
 
             {/*displayNFTrees()*/}
             <div className = 'cards'>
-                {images.map(image => <NFTreeCard image = {image}/>)}
+                {images.map(image => 
+                    <div className = 'imageContainer'>
+                    <NFTreeCard image = {image}/>
+                    <div className = 'spacer'></div>
+                    </div>
+                )}
             </div>
         </div>
 
