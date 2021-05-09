@@ -25,23 +25,16 @@ function App() {
   const[Currentnetwork, setCurrentnetwork] = useState(0);
   const[NFTreeContract, setNFTreeContract] = useState();
   const[nextTokenId, setNextTokenId] = useState();
-  const[navIsOpen, toggleNav] = useState(false);
   const[isLoading, setLoading] = useState(true);
 
   useEffect(() => {
+    const load = async () => {
+      await loadWeb3();
+      await loadBlockchainData();
+    };
+
     // initialize web3 and load blockchain data
     load();
-
-    // reload blockchainData on metamask accountsChanged event
-    window.ethereum.on('accountsChanged', function (accounts) {
-      loadBlockchainData(); 
-    });
-
-    // reload blockchainData on metamask networkChanged event
-    window.ethereum.on('networkChanged', function (accounts) {
-      loadBlockchainData();
-    });
-    console.log('end of useeffect');
 
     setLoading(false);
   }, []);
@@ -59,20 +52,10 @@ function App() {
         'no ethereum wallet detected.'
       );
     }
-    await window.ethereum.enable();
   };
 
-  // run loadWeb3
-  const load = async () => {
-    await loadWeb3();
-    await loadBlockchainData();
-  };
-
-  // load ethereum accounts, network, and smart contracts 
-  const loadBlockchainData = async () => {
-    // initialize web3
-    const web3 = window.web3;
-
+  const connectWallet = async () => {
+    console.log('ran')
     if(window.ethereum) {
       const web3 = new Web3(window.ethereum);
       await window.ethereum.enable();
@@ -85,6 +68,20 @@ function App() {
     }
 
     // fetch user eth account
+    const accounts = await window.web3.eth.getAccounts();
+    const account = accounts[0];
+    // set current account to account[0] if unlocked
+    if (account){
+      setCurrentaccount(account);
+    }
+  }
+
+  // load ethereum accounts, network, and smart contracts 
+  const loadBlockchainData = async () => {
+    // initialize web3
+    const web3 = window.web3;
+    
+    // fetch user eth account
     const accounts = await web3.eth.getAccounts();
     const account = accounts[0];
     // set current account to account[0] if unlocked
@@ -96,7 +93,7 @@ function App() {
     // 1337 local host
     const networkId = await web3.eth.net.getId();
     if(networkId != 5777){
-      setCurrentaccount('sowy wrong network');
+      setCurrentaccount('wrong network');
       setCurrentnetwork(networkId);
     }
 
@@ -114,22 +111,6 @@ function App() {
     }
     console.log('loadbcdata');
   }
-  
-  /* webpage/animation functions */
-
-  const toggleNavHandler = () => {
-    toggleNav(!navIsOpen);
-  }
-
-  const closeNav = () => {
-    toggleNav(false);
-  }
-
-  const navTransition = useTransition(navIsOpen, null, {
-    from: { position: 'absolute', opacity: 0 , transform: 'translate3d(100%,0,0)' },
-    enter: { opacity: 1, transform: 'translate3d(0%,0,0)' },
-    leave: { opacity: 0, transform: 'translate3d(100%,0,0)' },
-  })
 
   /* smart contract interaction functions */
 
@@ -148,15 +129,20 @@ function App() {
   }
 
   const searchAddress = async () => {
-    let tokens = [];
-    let balance = 0;
-    balance = await NFTreeContract.methods.balanceOf(Currentaccount).call();
-    if(balance >= 1){
-      tokens = await NFTreeContract.methods.tokensOfOwner(Currentaccount).call();
+    // search only if eth address
+    if(Currentaccount == 40){
+      let tokens = [];
+      let balance = 0;
+      balance = await NFTreeContract.methods.balanceOf(Currentaccount).call();
+      if(balance >= 1){
+        tokens = await NFTreeContract.methods.tokensOfOwner(Currentaccount).call();
+      } else {
+        //alert('This address does not own any NFTrees.');
+      }
+      return(tokens);
     } else {
-      //alert('This address does not own any NFTrees.');
+      return []
     }
-    return(tokens);
   }
 
   const getToken = async (tokenId) => {
@@ -172,7 +158,7 @@ function App() {
     <div className = 'App'>
       <Router>
         {/* display navbar */}
-        <Navbar account = {Currentaccount}/>
+        <Navbar account = {Currentaccount} connectWallet = {connectWallet}/>
 
         {/* depending on url display home, gallery, or about page */}
         <Switch>

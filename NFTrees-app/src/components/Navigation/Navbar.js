@@ -4,16 +4,25 @@ import './Navbar.css'
 
 function Navbar (props){
 
-    function substringAddress () {
+    function SubstringAddress () {
         // if address variable is an address, substring to save space
-        if (props.account.length > 40){
-            return(props.account.substring(0, 5) + "..." + props.account.substring(36, 42))
+        if(props.account){
+            if (props.account.length > 40){
+                return(props.account.substring(0, 5) + "..." + props.account.substring(36, 42))
+            }
+            // if network is wrong display 'wrong network'
+            else if (props.account == 'wrong network'){
+                return(props.account)
+            }
+            else{
+                return(<button onClick = {props.connectWallet} className = 'connectWallet'> connect wallet </button>)
+            }
         }
-        // otherwise display 'wrong address' or 'connect eth wallet'
-        else{
-            return(props.account)
+        else {
+            return(<button onClick = {props.connectWallet} className = 'connectWallet'> connect wallet </button>)
         }
     }
+
     return(
         <nav className = 'navbar'>
             {/* display navbar links */}
@@ -29,7 +38,7 @@ function Navbar (props){
             <p className = 'spacer'/>
 
             {/* display user address */}
-            <p className = "address my-auto"> {substringAddress()} </p>
+            <p className = "address my-auto"> <SubstringAddress/> </p>
 
         </nav>
     );
