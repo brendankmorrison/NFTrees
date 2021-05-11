@@ -13,6 +13,7 @@ import {
 } from "react-router-dom";
 
 // import components
+import Landing from './components/Pages/Landing';
 import Navbar from './components/Navigation/Navbar';
 import Home from './components/Pages/Home';
 import Plant from './components/Pages/Plant';
@@ -158,24 +159,26 @@ function App() {
     <div className = 'App'>
       <Router>
         {/* display navbar */}
-        <Navbar account = {Currentaccount} connectWallet = {connectWallet} className = 'nav'/>
+        {/*<Navbar account = {Currentaccount} connectWallet = {connectWallet}/>*/}
 
         {/* depending on url display home, gallery, or about page */}
         <Switch>
           <Route exact path= "/">
-            <Home mintToken = {mintToken} nextTokenId = {nextTokenId}/>
-            <Plant/>
-            <Footer />
-          </Route>
-          <Route exact path= "/plant">
-            <Plant/>
-            <Footer />
+            <Landing></Landing>
+            <div id = 'homePage'>
+              <Navbar account = {Currentaccount} connectWallet = {connectWallet}/>
+              <Home mintToken = {mintToken} nextTokenId = {nextTokenId}/>
+              <Plant/>
+              <Footer />
+            </div>
           </Route>
           <Route path="/wallet">
+            <Navbar account = {Currentaccount} connectWallet = {connectWallet}/>
             <Wallet getToken = {getToken} searchAddress = {searchAddress}/>
             <Footer />
           </Route>
           <Route path="/about">
+            <Navbar account = {Currentaccount} connectWallet = {connectWallet}/>
             <About />
             <Footer />
           </Route>
