@@ -7,7 +7,7 @@ import {Link, NavLink} from "react-router-dom";
 function Plant (props){
 
     return(
-        <div className = 'plantContainer'>
+        <div className = 'plantContainer' id = 'plant'>
             <div className = 'plantContent'>
                 <div className = 'plantLeft'>
                     <p>

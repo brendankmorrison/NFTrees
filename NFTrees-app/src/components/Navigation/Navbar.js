@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link, NavLink} from "react-router-dom";
+import { HashLink } from 'react-router-hash-link';
 import './Navbar.css'
 
 function Navbar (props){
@@ -30,7 +31,8 @@ function Navbar (props){
             <p className = 'spacer'/>
             <NavLink exact activeClassName = "active-navbar-Link my-auto" className = "navbar-Link my-auto" to = '/'> Home </NavLink>
             <p className = 'spacer'/>
-            <NavLink exact activeClassName = "active-navbar-Link my-auto" className = "navbar-Link my-auto" to = '/plant'> Plant </NavLink>
+            {/*<NavLink exact activeClassName = "active-navbar-Link my-auto" className = "navbar-Link my-auto" to = '/plant'> Plant </NavLink>*/}
+            <HashLink exact smooth activeClassName = "active-navbar-Link my-auto" className = "navbar-Link my-auto" to = '/#plant'> Plant </HashLink>
             <p className = 'spacer'/>
             <NavLink exact activeClassName = "active-navbar-Link my-auto" className = "navbar-Link my-auto" to = '/wallet'> Wallet </NavLink>
             <p className = 'spacer'/>
