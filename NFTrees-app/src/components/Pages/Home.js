@@ -2,6 +2,7 @@ import React from 'react';
 import './Home.css';
 import sample from './sample.jpeg';
 import {Link, NavLink} from "react-router-dom";
+import './background1.jpeg';
 
 function Home (props){
 

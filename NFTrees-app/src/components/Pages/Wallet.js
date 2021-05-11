@@ -16,10 +16,6 @@ function Wallet (props){
         if(tokenList.length == 0){
             // set token images to default image
             tokenImages.push(sample)
-            tokenImages.push(sample)
-            tokenImages.push(sample)
-            tokenImages.push(sample)
-            tokenImages.push(sample)
 
         }
         else {
