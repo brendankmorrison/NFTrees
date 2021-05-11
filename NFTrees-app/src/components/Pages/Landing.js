@@ -7,7 +7,7 @@ function Landing (props){
 
     return(
         <div className = 'landingContainer'>
-            
+            <div className = 'landingContent'></div>
         </div>
     );
 }

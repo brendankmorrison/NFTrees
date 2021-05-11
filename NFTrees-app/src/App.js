@@ -164,8 +164,8 @@ function App() {
         {/* depending on url display home, gallery, or about page */}
         <Switch>
           <Route exact path= "/">
-            <Landing></Landing>
-            <div id = 'homePage'>
+          <Landing/>
+            <div id = 'homePage' className= 'home'>
               <Navbar account = {Currentaccount} connectWallet = {connectWallet}/>
               <Home mintToken = {mintToken} nextTokenId = {nextTokenId}/>
               <Plant/>
