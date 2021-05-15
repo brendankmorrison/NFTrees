@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import { NavHashLink } from 'react-router-hash-link';
 import './Navbar.css';
 
@@ -12,7 +12,7 @@ function Navbar (props){
                 return(props.account.substring(0, 5) + "..." + props.account.substring(36, 42))
             }
             // if network is wrong display 'wrong network'
-            else if (props.account == 'wrong network'){
+            else if (props.account === 'wrong network'){
                 return(props.account)
             }
             else{

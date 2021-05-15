@@ -5,7 +5,6 @@ import NFTreeABI from './contracts/NFTree.json';
 
 // import packages
 import Web3 from 'web3';
-import {useTransition, animated} from 'react-spring';
 import {
   BrowserRouter as Router,
   Switch,
@@ -38,6 +37,16 @@ function App() {
     // initialize web3 and load blockchain data
     load();
 
+    // reload on metamask accountsChanged event
+    window.ethereum.on('accountsChanged', function (accounts) {
+      load(); 
+    });
+
+    // reload on metamask networkChanged event
+    window.ethereum.on('networkChanged', function (accounts) {
+      load();
+    });
+
     setLoading(false);
   }, []);
 
@@ -58,10 +67,10 @@ function App() {
 
   const connectWallet = async () => {
     if(window.ethereum) {
-      const web3 = new Web3(window.ethereum);
+      window.web3 = new Web3(window.ethereum);
       await window.ethereum.enable();
     } else if (window.web3) {
-      const web3 = new Web3(window.web3.currentProvider);
+      window.web3 = new Web3(window.web3.currentProvider);
     } else {
       window.alert(
         'no ethereum wallet detected.'
@@ -93,7 +102,7 @@ function App() {
     // get networkId, display error if networkId != 1 (ethereum mainnet)
     // 1337 local host
     const networkId = await web3.eth.net.getId();
-    if(networkId != 5777){
+    if(networkId !== 5777){
       setCurrentaccount('wrong network');
       setCurrentnetwork(networkId);
     }
@@ -108,9 +117,8 @@ function App() {
       let contract = await new web3.eth.Contract(NFTreeABI.abi, networkData.address);
       setNextTokenId(await contract.methods.getNextTokenId().call());
     }else{
-      window.alert('Contract Not Deployed')
+      //window.alert('Contract Not Deployed')
     }
-    console.log('loadbcdata');
   }
 
   /* smart contract interaction functions */
@@ -131,7 +139,7 @@ function App() {
 
   const searchAddress = async () => {
     // search only if eth address
-    if(Currentaccount == 40){
+    if(Currentaccount === 40){
       let tokens = [];
       let balance = 0;
       balance = await NFTreeContract.methods.balanceOf(Currentaccount).call();
@@ -165,6 +173,7 @@ function App() {
             <div className= 'home'>
               <Navbar account = {Currentaccount} connectWallet = {connectWallet}/>
               <Home mintToken = {mintToken} nextTokenId = {nextTokenId}/>
+              <div className = 'space'></div>
               <Plant/>
               <Footer />
             </div>

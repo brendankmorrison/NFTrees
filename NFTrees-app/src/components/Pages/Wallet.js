@@ -6,14 +6,14 @@ import sample from './sample.jpeg';
 function Wallet (props){
     const [images, setImages] = useState([]);
 
-    useEffect(async () => {
-        setImages(await handleSearch());
+    useEffect(() => {
+        handleSearch();
     }, [])
 
     const handleSearch = async () => {
         let tokenList = await props.searchAddress();
         let tokenImages= []; 
-        if(tokenList.length == 0){
+        if(tokenList.length === 0){
             // set token images to default image
             tokenImages.push(sample)
 
@@ -23,7 +23,7 @@ function Wallet (props){
                 tokenImages.push('https://gateway.pinata.cloud/ipfs/Qmby6oC9L3nKYCdjySkZrrPSmsx4BtpQXUoQ4MUBKXWnMV');
             }
         }   
-        return tokenImages;
+        setImages(tokenImages);
     }
 
     return(

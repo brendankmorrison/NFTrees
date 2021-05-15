@@ -2,7 +2,6 @@ import React from 'react';
 import './Plant.css';
 import BuyNFTree from './PageItems/BuyNFTree';
 import sample from './sample.jpeg';
-import {Link, NavLink} from "react-router-dom";
 
 function Plant (props){
 

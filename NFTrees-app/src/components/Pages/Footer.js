@@ -1,7 +1,6 @@
 import React from 'react';
 import './Footer.css';
 import {RiDiscordLine, RiTwitterLine, RiInstagramLine, RiGithubLine} from 'react-icons/ri';
-import { IconContext } from "react-icons";
 
 function  Footer (props){
 
