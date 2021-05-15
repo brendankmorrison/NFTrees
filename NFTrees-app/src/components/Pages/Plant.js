@@ -14,11 +14,13 @@ function Plant (props){
                         be donated to plant trees all over the world. Each token is proof of donation, and the 
                         corresponding number of trees planted is designatd on the top left corner of the card.  
                     </p>
-                    <BuyNFTree mintToken = {props.mintToken} nextTokenId = {props.nextTokenId}/>
-                    <BuyNFTree mintToken = {props.mintToken} nextTokenId = {props.nextTokenId}/>
-                    <BuyNFTree mintToken = {props.mintToken} nextTokenId = {props.nextTokenId}/>
-                    <BuyNFTree mintToken = {props.mintToken} nextTokenId = {props.nextTokenId}/>
-                    <BuyNFTree mintToken = {props.mintToken} nextTokenId = {props.nextTokenId}/>
+                    <div className = 'buttonContainer'>
+                        <BuyNFTree mintToken = {props.mintToken} nextTokenId = {props.nextTokenId}/>
+                        <BuyNFTree mintToken = {props.mintToken} nextTokenId = {props.nextTokenId}/>
+                        <BuyNFTree mintToken = {props.mintToken} nextTokenId = {props.nextTokenId}/>
+                        <BuyNFTree mintToken = {props.mintToken} nextTokenId = {props.nextTokenId}/>
+                        <BuyNFTree mintToken = {props.mintToken} nextTokenId = {props.nextTokenId}/>
+                    </div>
                     <p></p>
                 </div>
                 <div className = 'spacer'></div>
