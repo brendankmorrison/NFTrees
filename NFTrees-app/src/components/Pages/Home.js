@@ -7,7 +7,7 @@ import './background1.jpeg';
 function Home (props){
 
     return(
-        <div className = 'homeContainer'>
+        <div className = 'homeContainer' id = 'home'>
             <div className = 'homeContent'>
                 <div className = 'homeLeft'>
                     <p>

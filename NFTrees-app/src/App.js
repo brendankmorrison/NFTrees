@@ -157,15 +157,11 @@ function App() {
   return (
     <div className = 'App'>
       <Router>
-        {/* display navbar */}
-        {/*<Navbar account = {Currentaccount} connectWallet = {connectWallet}/>*/}
-
-        {/* depending on url display home, gallery, or about page */}
         <Switch>
           
           <Route exact path= "/">
             <Landing/>
-            <div id = 'homePage' className= 'home'>
+            <div className= 'home'>
               <Navbar account = {Currentaccount} connectWallet = {connectWallet}/>
               <Home mintToken = {mintToken} nextTokenId = {nextTokenId}/>
               <Plant/>

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link, NavLink} from "react-router-dom";
 import { HashLink } from 'react-router-hash-link';
-import './Navbar.css'
+import './Navbar.css';
 
 function Navbar (props){
 
@@ -27,9 +27,9 @@ function Navbar (props){
     return(
         <nav className = 'navbar'>
             {/* display navbar links */}
-            <NavLink exact className = "navbar-Brand my-auto" to = '/'> NFTrees </NavLink>
+            <HashLink exact smooth className = "navbar-Brand my-auto" to = '/#landing'> NFTrees </HashLink>
             <p className = 'spacer'/>
-            <NavLink exact activeClassName = "active-navbar-Link my-auto" className = "navbar-Link my-auto" to = '/'> Home </NavLink>
+            <HashLink exact smooth activeClassName = "active-navbar-Link my-auto" className = "navbar-Link my-auto" to = '/#home'> Home </HashLink>
             <p className = 'spacer'/>
             {/*<NavLink exact activeClassName = "active-navbar-Link my-auto" className = "navbar-Link my-auto" to = '/plant'> Plant </NavLink>*/}
             <HashLink exact smooth activeClassName = "active-navbar-Link my-auto" className = "navbar-Link my-auto" to = '/#plant'> Plant </HashLink>
