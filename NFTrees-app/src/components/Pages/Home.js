@@ -1,7 +1,7 @@
 import React from 'react';
 import './Home.css';
 import sample from './sample.jpeg';
-import {Link, NavLink} from "react-router-dom";
+import { NavHashLink } from 'react-router-hash-link';
 import './background1.jpeg';
 
 function Home (props){
@@ -15,7 +15,7 @@ function Home (props){
                         be donated to plant trees all over the world. Each token is proof of donation, and the 
                         corresponding number of trees planted is designatd on the top left corner of the card.  
                     </p>
-                    <NavLink exact className = "plant-Link my-auto" to = '/plant'> Plant NFTree </NavLink>
+                    <NavHashLink exact smooth className = "plant-Link my-auto" to = '/#plant'> Plant NFTree </NavHashLink>
                     <p></p>
                 </div>
                 <div className = 'spacer'></div>

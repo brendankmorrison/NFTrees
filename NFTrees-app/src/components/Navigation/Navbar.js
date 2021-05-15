@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link, NavLink} from "react-router-dom";
-import { HashLink } from 'react-router-hash-link';
+import { NavHashLink } from 'react-router-hash-link';
 import './Navbar.css';
 
 function Navbar (props){
@@ -27,12 +27,11 @@ function Navbar (props){
     return(
         <nav className = 'navbar'>
             {/* display navbar links */}
-            <HashLink exact smooth className = "navbar-Brand my-auto" to = '/#landing'> NFTrees </HashLink>
+            <NavHashLink exact smooth className = "navbar-Brand my-auto" to = '/#landing'> NFTrees </NavHashLink>
             <p className = 'spacer'/>
-            <HashLink exact smooth activeClassName = "active-navbar-Link my-auto" className = "navbar-Link my-auto" to = '/#home'> Home </HashLink>
+            <NavHashLink exact smooth activeClassName = "active-navbar-Link my-auto" className = "navbar-Link my-auto" to = '/#home'> Home </NavHashLink>
             <p className = 'spacer'/>
-            {/*<NavLink exact activeClassName = "active-navbar-Link my-auto" className = "navbar-Link my-auto" to = '/plant'> Plant </NavLink>*/}
-            <HashLink exact smooth activeClassName = "active-navbar-Link my-auto" className = "navbar-Link my-auto" to = '/#plant'> Plant </HashLink>
+            <NavHashLink exact smooth activeClassName = "active-navbar-Link my-auto" className = "navbar-Link my-auto" to = '/#plant'> Plant </NavHashLink>
             <p className = 'spacer'/>
             <NavLink exact activeClassName = "active-navbar-Link my-auto" className = "navbar-Link my-auto" to = '/wallet'> Wallet </NavLink>
             <p className = 'spacer'/>
