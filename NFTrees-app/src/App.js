@@ -53,10 +53,9 @@ function App() {
         'no ethereum wallet detected.'
       );
     }
-  };
+  }
 
   const connectWallet = async () => {
-    console.log('ran')
     if(window.ethereum) {
       const web3 = new Web3(window.ethereum);
       await window.ethereum.enable();
@@ -163,8 +162,9 @@ function App() {
 
         {/* depending on url display home, gallery, or about page */}
         <Switch>
+          
           <Route exact path= "/">
-          <Landing/>
+            <Landing/>
             <div id = 'homePage' className= 'home'>
               <Navbar account = {Currentaccount} connectWallet = {connectWallet}/>
               <Home mintToken = {mintToken} nextTokenId = {nextTokenId}/>
@@ -172,16 +172,19 @@ function App() {
               <Footer />
             </div>
           </Route>
+
           <Route path="/wallet">
             <Navbar account = {Currentaccount} connectWallet = {connectWallet}/>
             <Wallet getToken = {getToken} searchAddress = {searchAddress}/>
             <Footer />
           </Route>
+
           <Route path="/about">
             <Navbar account = {Currentaccount} connectWallet = {connectWallet}/>
             <About />
             <Footer />
           </Route>
+
         </Switch>
       </Router>
     </div>
