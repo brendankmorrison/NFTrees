@@ -20,6 +20,7 @@ import Plant from './components/Pages/Plant';
 import Wallet from './components/Pages/Wallet';
 import About from './components/Pages/About';
 import Footer from './components/Pages/Footer';
+import ScrollToTop from './components/Pages/PageItems/ScrollToTop';
 
 function App() {
   const[Currentaccount, setCurrentaccount] = useState("connect eth account.");
@@ -170,12 +171,14 @@ function App() {
           </Route>
 
           <Route path="/wallet">
+            <ScrollToTop/>
             <Navbar account = {Currentaccount} connectWallet = {connectWallet}/>
             <Wallet getToken = {getToken} searchAddress = {searchAddress}/>
             <Footer />
           </Route>
 
           <Route path="/about">
+            <ScrollToTop/>
             <Navbar account = {Currentaccount} connectWallet = {connectWallet}/>
             <About />
             <Footer />
