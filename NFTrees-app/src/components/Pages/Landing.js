@@ -11,7 +11,7 @@ function Landing (props){
         <div className = 'landingContainer' id = 'landing'>
             <div className = 'landingContent'>
             <div className = 'treeCount'> 1*** NFTrees Planted</div>
-            <HashLink exact smooth className = "arrow my-auto" to = '/#home'> <FiArrowDown/></HashLink>
+            <div className = 'arrowContainer'><HashLink exact smooth className = "arrow my-auto" to = '/#home'> <FiArrowDown/></HashLink></div>
             </div>
         </div>
     );
