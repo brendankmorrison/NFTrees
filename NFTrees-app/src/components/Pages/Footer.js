@@ -47,6 +47,10 @@ function  Footer (props){
             </div>
             <div className = 'copyrightContainer'>
                 <p className = 'copyright'> copyright &#169; 2021 NFTrees </p>
+                <div className = 'attribution'>Favicon made by 
+                    <a href="https://www.flaticon.com/authors/dinosoftlabs" title="DinosoftLabs" className = 'attributionLink'> DinosoftLabs </a> from 
+                    <a href="https://www.flaticon.com/" title="Flaticon" className = 'attributionLink'>www.flaticon.com</a>
+                </div>
             </div>
         </div>
     );
