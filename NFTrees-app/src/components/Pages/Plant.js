@@ -1,7 +1,7 @@
 import React from 'react';
 import './Plant.css';
 import BuyNFTree from './PageItems/BuyNFTree';
-import sample from './sample.jpeg';
+import sample from './art/sample1-text.jpg';
 
 function Plant (props){
 

@@ -1,7 +1,7 @@
 import React ,{useEffect, useState} from 'react';
 import NFTreeCard from './PageItems/NFTreeCard';
 import './Wallet.css';
-import sample from './sample.jpeg';
+import sample from './art/sample1-text.jpg';
 
 function Wallet (props){
     const [images, setImages] = useState([]);
