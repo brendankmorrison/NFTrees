@@ -2,6 +2,7 @@
 import React ,{useEffect, useState} from 'react';
 import './App.css';
 import NFTreeABI from './contracts/NFTree.json';
+import MycoinABI from './contracts/Mycoin.json'; //test
 
 // import packages
 import Web3 from 'web3';
@@ -23,8 +24,10 @@ import ScrollToTop from './components/Pages/PageItems/ScrollToTop';
 
 function App() {
   const[Currentaccount, setCurrentaccount] = useState("connect eth account.");
+  const[Secondaccount, setSecondaccount] = useState("connect eth account.");
   const[Currentnetwork, setCurrentnetwork] = useState(0);
   const[NFTreeContract, setNFTreeContract] = useState();
+  const[MycoinContract, setMycoinContract] = useState();
   const[nextTokenId, setNextTokenId] = useState();
   const[isLoading, setLoading] = useState(true);
 
@@ -109,9 +112,14 @@ function App() {
 
     // get smart contracts
     const networkData = NFTreeABI.networks[networkId];
+    const networkData2 = MycoinABI.networks[networkId];
+
     if(networkData){
       
       setNFTreeContract(await new web3.eth.Contract(NFTreeABI.abi, networkData.address));
+      setMycoinContract(await new web3.eth.Contract(MycoinABI.abi, networkData2.address));
+      console.log(NFTreeContract);
+      console.log(MycoinContract);
 
       /* do not know why i need to do this */
       let contract = await new web3.eth.Contract(NFTreeABI.abi, networkData.address);
@@ -135,6 +143,24 @@ function App() {
 
     // update next token id
     setNextTokenId(await NFTreeContract.methods.getNextTokenId().call());
+  }
+
+  const mint = async () => {
+    await MycoinContract.methods.mint(Currentaccount).send({from: Currentaccount, value: 0});
+    console.log(await MycoinContract.methods.totalSupply().call())
+    console.log(await MycoinContract.methods.balanceOf(Currentaccount).call())
+
+  }
+
+  const balance = async () => {
+    console.log(await MycoinContract.methods.balanceOf(Currentaccount).call())
+
+  }
+
+  const transfer = async () => {
+    await MycoinContract.methods.transfer('0x2e5228Ab51087B6FFD54F63af375Ebb2d2094e3F', 10000).send({from: Currentaccount, value: 0});
+    console.log(await MycoinContract.methods.balanceOf('0x2e5228Ab51087B6FFD54F63af375Ebb2d2094e3F').call())
+
   }
 
   const searchAddress = async () => {
@@ -173,8 +199,11 @@ function App() {
             <div className= 'home'>
               <Navbar account = {Currentaccount} connectWallet = {connectWallet}/>
               <Home mintToken = {mintToken} nextTokenId = {nextTokenId}/>
+              <button onClick = {mint}> mint mycoin </button>
+              <button onClick = {balance}> balance </button>
+              <button onClick = {transfer}> transfer </button>
               <div className = 'space'></div>
-              <Plant/>
+              <Plant mintToken = {mintToken} nextTokenId = {nextTokenId}/>
               <Footer />
             </div>
           </Route>
