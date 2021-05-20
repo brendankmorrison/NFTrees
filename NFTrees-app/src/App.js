@@ -199,7 +199,7 @@ function App() {
             <div className= 'home'>
               <Navbar account = {Currentaccount} connectWallet = {connectWallet}/>
               <Home mintToken = {mintToken} nextTokenId = {nextTokenId}/>
-              <button onClick = {mint}> mint mycoin </button>
+              <button onClick = {mint}> mint eth </button>
               <button onClick = {balance}> balance </button>
               <button onClick = {transfer}> transfer </button>
               <div className = 'space'></div>
