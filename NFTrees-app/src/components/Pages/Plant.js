@@ -5,6 +5,8 @@ import sample from './art/sample1-text.jpg';
 
 function Plant (props){
     const[NumTrees, setNumTrees] = useState(1);
+    const[Tip, setTip] = useState('none');
+    const[Coin, setCoin] = useState('USDT');
     const[totalCost, setTotalCost] = useState(1);
 
     function displayContent (){
@@ -64,21 +66,36 @@ function Plant (props){
             <div className = 'plantContent'>
                 <div className = 'plantLeft'>
                     <div className = 'plantLeftContainer'>
-                    <div className = 'buttonContainer'>
-                        <button className = 'treeButton' onClick = {() => setNumTrees(1)}> 1 </button>
-                        <button className = 'treeButton' onClick = {() => setNumTrees(5)}> 5 </button>
-                        <button className = 'treeButton' onClick = {() => setNumTrees(10)}> 10 </button>
-                        <button className = 'treeButton' onClick = {() => setNumTrees(100)}> 100 </button>
-                        <button className = 'treeButton' onClick = {() => setNumTrees(1000)}> 1000 </button>
-                        <button className = 'treeButton' onClick = {() => setNumTrees(10000)}> 10000</button>
+                        <div className = 'buttonContainer'>
+                            <button className = {NumTrees == 1 ? 'activeTreeButton': 'treeButton'} onClick = {() => setNumTrees(1)} > 1 </button>
+                            <button className = {NumTrees == 5 ? 'activeTreeButton': 'treeButton'} onClick = {() => setNumTrees(5)}> 5 </button>
+                            <button className = {NumTrees == 10 ? 'activeTreeButton': 'treeButton'} onClick = {() => setNumTrees(10)}> 10 </button>
+                            <button className = {NumTrees == 100 ? 'activeTreeButton': 'treeButton'} onClick = {() => setNumTrees(100)}> 100 </button>
+                            <button className = {NumTrees == 1000 ? 'activeTreeButton': 'treeButton'} onClick = {() => setNumTrees(1000)}> 1000 </button>
+                            <button className = {NumTrees == 10000 ? 'activeTreeButton': 'treeButton'} onClick = {() => setNumTrees(10000)}> 10000</button>
 
-                    </div>
+                        </div>
 
-                    {/* router */}
-                    
-                    {displayContent()}
-                    <BuyNFTree mintToken = {props.mintToken} nextTokenId = {props.nextTokenId}/>
-                    <p></p>
+                        {displayContent()}
+
+                        <div className = 'paymentContainer'>
+                            <div className = 'tipContainer'>
+                                <button className = {Tip == 'none' ? 'activeTipButton': 'tipButton'} onClick = {() => setTip('none')} > none </button>
+                                <button className = {Tip == '5' ? 'activeTipButton': 'tipButton'} onClick = {() => setTip('5')} > 5% </button>
+                                <button className = {Tip == '10' ? 'activeTipButton': 'tipButton'} onClick = {() => setTip('10')}> 10% </button>
+                                <button className = {Tip == '15' ? 'activeTipButton': 'tipButton'} onClick = {() => setTip('15')}> 15% </button>
+                                <button className = {Tip == '20' ? 'activeTipButton': 'tipButton'} onClick = {() => setTip('20')}> 20% </button>
+                                <button className = {Tip == 'custom' ? 'activeTipButton': 'tipButton'} onClick = {() => setTip('custom')}>  </button>
+                            </div>
+                            <div className = 'coinContainer'>
+                                <button className = {Coin == 'USDT' ? 'activeCoinButton': 'coinButton'} onClick = {() => setCoin('USDT')} > USDT </button>
+                                <button className = {Coin == 'USDC' ? 'activeCoinButton': 'coinButton'} onClick = {() => setCoin('USDC')} > USDC </button>
+                            </div>
+                            <div className = 'totalContainer'>
+                                <p> Total = ${NumTrees + NumTrees*Number(Tip)*.01} {Coin} </p>
+                                <BuyNFTree mintToken = {props.mintToken} nextTokenId = {props.nextTokenId}/>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className = 'spacer'></div>
