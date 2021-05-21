@@ -40,7 +40,6 @@
 .buttonContainer{
     display: flex;
     flex-direction: row;
-    margin-bottom: 30px;
 }
 
 .treeButton{
@@ -65,7 +64,6 @@
 .paymentContainer{
     border:solid;
     border-width:1px;
-    margin-top: 30px;
     height: 50%;
     display: flex;
     flex-direction: row;
@@ -97,6 +95,42 @@
     height: 16.666666%;
     background-color: lightgray;
     transition: 0.5s;
+}
+
+.customTipButton{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 16.666666%;
+    transition: 0.5s;
+    background-color: rgb(255, 255, 255);
+}
+
+.customTipButton:hover{
+    display: flex;
+    flex-direction: row;
+    border-radius:10px;
+    width: 100%;
+    height: 16.666666%;
+    background-color: lightgray;
+}
+
+.activeCustomTipButton{
+    display: flex;
+    flex-direction: row;
+    border-radius:10px;
+    width: 100%;
+    height: 16.666666%;
+    background-color: lightgray;
+    transition: 0.5s;
+}
+
+.dollarsign{
+    width:10%;
+}
+
+.customInput{
+    width:90%;
 }
 
 .coinContainer{
