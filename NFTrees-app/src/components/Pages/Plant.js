@@ -2,12 +2,38 @@ import React ,{useEffect, useState} from 'react';
 import './Plant.css';
 import BuyNFTree from './PageItems/BuyNFTree';
 import sample from './art/sample1-text.jpg';
+import { RiContrastDropLine } from 'react-icons/ri';
 
 function Plant (props){
     const[NumTrees, setNumTrees] = useState(1);
-    const[Tip, setTip] = useState('none');
+    const[Tip, setTip] = useState('Tip Devs');
     const[Coin, setCoin] = useState('USDT');
     const[totalCost, setTotalCost] = useState(1);
+    const[tipMenuOpen, setTipMenuOpen] = useState(false);
+    const[coinMenuOpen, setCoinMenuOpen] = useState(false);
+
+    useEffect (() => {
+        document.body.addEventListener('click', function(e){
+            var ignore = document.getElementById('tipMenuButton');
+            if (!(e.target === ignore)){
+                setTipMenuOpen(false);
+            }
+            else {
+                return;
+            }
+        });
+
+        document.body.addEventListener('click', function(e){
+            var ignore = document.getElementById('coinMenuButton');
+            if (!(e.target === ignore)){
+                setCoinMenuOpen(false);
+            }
+            else {
+                return;
+            }
+        });
+
+    }, [tipMenuOpen, coinMenuOpen]);
 
     function displayContent (){
         if (NumTrees == 1){
@@ -61,42 +87,85 @@ function Plant (props){
 
     }
 
+    function displayTreeMenu (){
+        return(
+            <div className = 'buttonContainer'>
+                <button className = {NumTrees == 1 ? 'activeTreeButton': 'treeButton'} onClick = {() => setNumTrees(1)} > 1 </button>
+                <button className = {NumTrees == 5 ? 'activeTreeButton': 'treeButton'} onClick = {() => setNumTrees(5)}> 5 </button>
+                <button className = {NumTrees == 10 ? 'activeTreeButton': 'treeButton'} onClick = {() => setNumTrees(10)}> 10 </button>
+                <button className = {NumTrees == 100 ? 'activeTreeButton': 'treeButton'} onClick = {() => setNumTrees(100)}> 100 </button>
+                <button className = {NumTrees == 1000 ? 'activeTreeButton': 'treeButton'} onClick = {() => setNumTrees(1000)}> 1000 </button>
+                <button className = {NumTrees == 10000 ? 'activeTreeButton': 'treeButton'} onClick = {() => setNumTrees(10000)}> 10000</button>
+            </div>
+            )
+    }
+
+    function displayTipMenu (){
+        if (tipMenuOpen){
+            return(
+                <div>
+                    <button className = 'tipButton' onClick = {() => setTip('none')} > none </button>
+                    <button className = 'tipButton' onClick = {() => setTip('5')} > 5% </button>
+                    <button className = 'tipButton' onClick = {() => setTip('10')}> 10% </button>
+                    <button className = 'tipButton' onClick = {() => setTip('15')}> 15% </button>
+                    <button className = 'tipButton' onClick = {() => setTip('20')}> 20% </button>
+                    {/*<div className = 'customTipButton' onClick = {() => setTip('custom')}> custom </div>*/}
+
+
+
+                </div>
+
+            
+            )
+        }
+        else{
+            return
+        }
+    }
+
+    function displayCoinMenu (){
+        if (coinMenuOpen){
+            return(
+                <div>
+                    <button className = 'coinButton' onClick = {() => setCoin('USDT')} > USDT </button>
+                    <button className = 'coinButton' onClick = {() => setCoin('USDC')} > USDC </button>
+                </div>
+
+            
+            )
+        }
+        else{
+            return
+        }
+    }
+
     return(
         <div className = 'plantContainer' id = 'plant'>
             <div className = 'plantContent'>
                 <div className = 'plantLeft'>
                     <div className = 'plantLeftContainer'>
+
                         <div className = 'textContainer'>
                             {displayContent()}
                         </div>
-                        <div className = 'buttonContainer'>
-                            <button className = {NumTrees == 1 ? 'activeTreeButton': 'treeButton'} onClick = {() => setNumTrees(1)} > 1 </button>
-                            <button className = {NumTrees == 5 ? 'activeTreeButton': 'treeButton'} onClick = {() => setNumTrees(5)}> 5 </button>
-                            <button className = {NumTrees == 10 ? 'activeTreeButton': 'treeButton'} onClick = {() => setNumTrees(10)}> 10 </button>
-                            <button className = {NumTrees == 100 ? 'activeTreeButton': 'treeButton'} onClick = {() => setNumTrees(100)}> 100 </button>
-                            <button className = {NumTrees == 1000 ? 'activeTreeButton': 'treeButton'} onClick = {() => setNumTrees(1000)}> 1000 </button>
-                            <button className = {NumTrees == 10000 ? 'activeTreeButton': 'treeButton'} onClick = {() => setNumTrees(10000)}> 10000</button>
 
+                        <div>
+                            {displayTreeMenu()}
                         </div>
 
                         <div className = 'paymentContainer'>
                             <div className = 'tipContainer'>
-                                <button className = {Tip == 'none' ? 'activeTipButton': 'tipButton'} onClick = {() => setTip('none')} > none </button>
-                                <button className = {Tip == '5' ? 'activeTipButton': 'tipButton'} onClick = {() => setTip('5')} > 5% </button>
-                                <button className = {Tip == '10' ? 'activeTipButton': 'tipButton'} onClick = {() => setTip('10')}> 10% </button>
-                                <button className = {Tip == '15' ? 'activeTipButton': 'tipButton'} onClick = {() => setTip('15')}> 15% </button>
-                                <button className = {Tip == '20' ? 'activeTipButton': 'tipButton'} onClick = {() => setTip('20')}> 20% </button>
-                                <div className = {Tip == 'custom' ? 'activeCustomTipButton': 'customTipButton'} onClick = {() => setTip('custom')}>
-                                    <p className = 'dollarsign'>$</p>
-                                    <input className = 'customInput' placeholder = '20'/>
-                                </div>
+                                <button onClick = {() => setTipMenuOpen(true)} id = 'tipMenuButton' className = 'tipMenuButton'> { Tip } v </button>
+                                {displayTipMenu()}
                             </div>
+
                             <div className = 'coinContainer'>
-                                <button className = {Coin == 'USDT' ? 'activeCoinButton': 'coinButton'} onClick = {() => setCoin('USDT')} > USDT </button>
-                                <button className = {Coin == 'USDC' ? 'activeCoinButton': 'coinButton'} onClick = {() => setCoin('USDC')} > USDC </button>
+                                <button onClick = {() => setCoinMenuOpen(true)} id = 'coinMenuButton' className = 'coinMenuButton'> { Coin } v </button>
+                                {displayCoinMenu()}
                             </div>
+
                             <div className = 'totalContainer'>
-                                <p> Total = {NumTrees + NumTrees*Number(Tip)*.01} {Coin} </p>
+                                <p className = 'total'> Total = {NumTrees + NumTrees*Number(Tip)*.01} {Coin} </p>
                                 <BuyNFTree mintToken = {props.mintToken} nextTokenId = {props.nextTokenId}/>
                             </div>
                         </div>
