@@ -1,3 +1,6 @@
+*{
+    border-width: 1px;
+}
 
 .plantContainer{
     background-color: #fff;
@@ -24,10 +27,10 @@
 
 .plantLeft{
     overflow: scroll;
-    padding-top: 25%;
+    padding-top: 150px;
     padding-left: 40px;
     width: 48%;
-    height: 100vh;
+    height: 100%;
 }
 
 .plantLeftContainer{
@@ -43,22 +46,31 @@
 }
 
 .treeButton{
+    padding-top: 4px;
+    padding-bottom: 4px;
     width: 16.666666%;
     transition: 0.5s;
     background-color: rgb(255, 255, 255);
 }
 
 .treeButton:hover{
-    border-radius:10px;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
     width: 16.666666%;
     background-color: lightgray;
 }
 
 .activeTreeButton{
-    border-radius:10px;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
     width: 16.666666%;
     background-color: lightgray;
     transition: 0.5s;
+}
+
+.textContainer{
+    padding-top: 30px;
+    padding-bottom: 20px;
 }
 
 .paymentContainer{
@@ -86,7 +98,7 @@
 }
 
 .tipButton:hover{
-    border-radius:10px;
+    border-radius:5px;
     width: 100%;
     height: 30px;
     background-color: lightgray;
@@ -104,14 +116,17 @@
 .customTipButton:hover{
     display: flex;
     flex-direction: row;
-    border-radius:10px;
+    border-radius:5px;
     width: 100%;
     height: 16.666666%;
     background-color: lightgray;
 }
 
 .tipMenuButton{
-    height:30px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border-radius: 5px;
+    height: 30px;
 }
 
 .dollarsign{
@@ -136,7 +151,7 @@
 }
 
 .coinButton:hover{
-    border-radius: 10px;
+    border-radius: 5px;
     width: 100%;
     height: 50%;
     background-color: lightgray;
@@ -144,6 +159,9 @@
 }
 
 .coinMenuButton{
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border-radius: 5px;
     height:30px;
 }
 

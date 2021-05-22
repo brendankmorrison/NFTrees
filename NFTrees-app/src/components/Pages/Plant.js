@@ -6,7 +6,7 @@ import { RiContrastDropLine } from 'react-icons/ri';
 
 function Plant (props){
     const[NumTrees, setNumTrees] = useState(1);
-    const[Tip, setTip] = useState('Tip Devs');
+    const[Tip, setTip] = useState('Tip devs');
     const[Coin, setCoin] = useState('USDT');
     const[totalCost, setTotalCost] = useState(1);
     const[tipMenuOpen, setTipMenuOpen] = useState(false);
@@ -33,7 +33,7 @@ function Plant (props){
             }
         });
 
-    }, [tipMenuOpen, coinMenuOpen]);
+    }, []);
 
     function displayContent (){
         if (NumTrees == 1){
@@ -110,16 +110,23 @@ function Plant (props){
                     <button className = 'tipButton' onClick = {() => setTip('15')}> 15% </button>
                     <button className = 'tipButton' onClick = {() => setTip('20')}> 20% </button>
                     {/*<div className = 'customTipButton' onClick = {() => setTip('custom')}> custom </div>*/}
-
-
-
                 </div>
-
-            
             )
         }
         else{
             return
+        }
+    }
+
+    function displayTipSelection (){
+        if(isNaN(Tip)){
+            return(
+                Tip
+            )
+        } else {
+            return(
+                '% ' + Tip
+            )
         }
     }
 
@@ -139,28 +146,30 @@ function Plant (props){
         }
     }
 
+
+
     return(
         <div className = 'plantContainer' id = 'plant'>
             <div className = 'plantContent'>
                 <div className = 'plantLeft'>
                     <div className = 'plantLeftContainer'>
 
-                        <div className = 'textContainer'>
-                            {displayContent()}
-                        </div>
-
                         <div>
                             {displayTreeMenu()}
                         </div>
 
+                        <div className = 'textContainer'>
+                            {displayContent()}
+                        </div>
+
                         <div className = 'paymentContainer'>
                             <div className = 'tipContainer'>
-                                <button onClick = {() => setTipMenuOpen(true)} id = 'tipMenuButton' className = 'tipMenuButton'> { Tip } v </button>
+                                <button onClick = {() => setTipMenuOpen(true)} id = 'tipMenuButton' className = 'tipMenuButton'> {displayTipSelection()} </button>
                                 {displayTipMenu()}
                             </div>
 
                             <div className = 'coinContainer'>
-                                <button onClick = {() => setCoinMenuOpen(true)} id = 'coinMenuButton' className = 'coinMenuButton'> { Coin } v </button>
+                                <button onClick = {() => setCoinMenuOpen(true)} id = 'coinMenuButton' className = 'coinMenuButton'> { Coin } </button>
                                 {displayCoinMenu()}
                             </div>
 
