@@ -175,7 +175,7 @@ function Plant (props){
 
                             <div className = 'totalContainer'>
                                 <p className = 'total'> Total = {NumTrees + NumTrees*Number(Tip)*.01} {Coin} </p>
-                                <BuyNFTree mintToken = {props.mintToken} nextTokenId = {props.nextTokenId}/>
+                                <BuyNFTree mintToken = {props.mintToken} isConnected = {props.isConnected}/>
                             </div>
                         </div>
                     </div>

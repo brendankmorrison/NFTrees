@@ -129,6 +129,12 @@ function App() {
     }
   }
 
+  const isConnected = async () => {
+    return(
+      window.ethereum.isConnected()// doesnt work if you disconnect
+    )
+  }
+
   /* smart contract interaction functions */
 
   const mintToken = async () => {
@@ -203,7 +209,7 @@ function App() {
               <button onClick = {balance}> balance </button>
               <button onClick = {transfer}> transfer </button>
               <div className = 'space'></div>
-              <Plant mintToken = {mintToken} nextTokenId = {nextTokenId}/>
+              <Plant mintToken = {mintToken} isConnected = {isConnected}/>
               <Footer />
             </div>
           </Route>

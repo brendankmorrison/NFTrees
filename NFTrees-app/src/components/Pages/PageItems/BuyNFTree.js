@@ -3,7 +3,12 @@ import './BuyNFTree.css';
 
 function BuyNFTree (props){
     const handleBuyNFTree = async () => {
-        props.mintToken();
+        if(props.isConnected()){
+            props.mintToken();
+        }
+        else {
+            alert('Connect eth account');
+        }
     }
 
     return(
