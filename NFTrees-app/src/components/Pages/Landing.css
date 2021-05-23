@@ -1,16 +1,12 @@
 .landingContainer{
     width: 100vw;
     height: 100vh;
-    min-height: 755px;
     /*background-image: url('background2.jpeg');*/
     padding-top: 40vh;
 }
 
 .landingContent{
     width: 100vw;
-    height:100vh;
-    min-height: 755px;
-    position: absolute;
     margin: auto;
 }
 
@@ -31,6 +27,14 @@
     color: #D4D4D4;
 }
 
+.comingSoon{
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    display: none;
+
+}
+
 .arrowContainer{
     display: flex;
     justify-content: center;
@@ -44,3 +48,13 @@
     fill:#82ac7c;
     transition:1s;
 }
+
+@media only screen and (max-width: 1000px) {
+    .comingSoon{
+        display:block;
+    } 
+
+    .arrowContainer{
+        display: none;
+    }
+  }

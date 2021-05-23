@@ -51,6 +51,7 @@ function App() {
     });
 
     setLoading(false);
+    console.log('end')
   }, []);
 
   /* ethereum initialization functions */

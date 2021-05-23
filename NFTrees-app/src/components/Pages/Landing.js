@@ -12,6 +12,7 @@ function Landing (props){
             <div className = 'landingContent'>
             <CountUp className = 'treeCountNumber' end = {10000} duration = {4} separator = {','}/>
             <div className = 'treeCount'> NFTrees Planted</div>
+            <div className = 'comingSoon'> Please continue to this site on a computer, mobile site coming soon. </div>
             <div className = 'arrowContainer'>
                 <HashLink exact smooth className = "arrow my-auto" to = '/#home'>
                 <BsChevronCompactDown size = '40' className = 'icon'/>
