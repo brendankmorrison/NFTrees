@@ -10,6 +10,12 @@ function Home (props){
         <div className = 'homeContainer' id = 'home'>
             <div className = 'homeContent'>
                 <div className = 'homeLeft'>
+                    <div className = 'homeHeaderContainer'> 
+                        <div className = 'homeHeader'> Help reduce Ethereum carbon emmissions by planting </div>
+                        <div className = 'homeHeader' style = {{color: '#9dba94'}}> NFTrees </div>
+                    
+                    </div>
+                    <div className = 'line'></div>
                     <p>
                         NFTrees is the first carbon negative NFT digital art collection. 100% of the proceeds will 
                         be donated to plant trees all over the world. Each token is proof of donation, and the 

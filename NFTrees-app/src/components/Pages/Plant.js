@@ -158,6 +158,7 @@ function Plant (props){
                             <div className = 'plantHeader' style = {{color: '#9dba94'}}> NFTrees </div>
                             <div className = 'plantHeader'> would you like to plant? </div>
                         </div>
+                        <div className = 'line'></div>
                         <div>
                             {displayTreeMenu()}
                         </div>
