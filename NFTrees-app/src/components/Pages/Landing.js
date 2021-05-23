@@ -10,7 +10,7 @@ function Landing (props){
     return(
         <div className = 'landingContainer' id = 'landing'>
             <div className = 'landingContent'>
-            <CountUp className = 'treeCountNumber' end = {100000} duration = {4}/>
+            <CountUp className = 'treeCountNumber' end = {10000} duration = {4} separator = {','}/>
             <div className = 'treeCount'> NFTrees Planted</div>
             <div className = 'arrowContainer'>
                 <HashLink exact smooth className = "arrow my-auto" to = '/#home'>
