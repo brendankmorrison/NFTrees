@@ -11,6 +11,7 @@ function Plant (props){
     const[totalCost, setTotalCost] = useState(1);
     const[tipMenuOpen, setTipMenuOpen] = useState(false);
     const[coinMenuOpen, setCoinMenuOpen] = useState(false);
+    const[totel, setTotal] = useState(0);
 
     useEffect (() => {
         document.body.addEventListener('click', function(e){
@@ -146,6 +147,19 @@ function Plant (props){
         }
     }
 
+    function calculateTotal (){
+        if(isNaN(Number(Tip))){
+            return(
+                NumTrees    
+            )
+        } else{
+            return(
+                NumTrees + NumTrees*Number(Tip)*.01
+            )
+        }
+
+    }
+
 
 
     return(
@@ -154,9 +168,7 @@ function Plant (props){
                 <div className = 'plantLeft'>
                     <div className = 'plantLeftContainer'>
                         <div className = 'plantHeaderContainer'>
-                            <div className = 'plantHeader'> How many </div>
-                            <div className = 'plantHeader' style = {{color: '#9dba94'}}> NFTrees </div>
-                            <div className = 'plantHeader'> would you like to plant? </div>
+                        <div className = 'plantHeader'> How many <span style = {{color: '#9dba94', fontSize: '30px'}}> NFTrees </span> would you like to plant? </div>
                         </div>
                         <div className = 'line'></div>
                         <div>
@@ -179,7 +191,7 @@ function Plant (props){
                             </div>
 
                             <div className = 'totalContainer'>
-                                <p className = 'total'> Total = {NumTrees + NumTrees*Number(Tip)*.01} {Coin} </p>
+                                <p className = 'total'> Total = {calculateTotal()} {Coin} </p>
                                 <BuyNFTree mintToken = {props.mintToken} isConnected = {props.isConnected}/>
                             </div>
                         </div>
