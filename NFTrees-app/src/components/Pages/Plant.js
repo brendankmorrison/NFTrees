@@ -153,7 +153,11 @@ function Plant (props){
             <div className = 'plantContent'>
                 <div className = 'plantLeft'>
                     <div className = 'plantLeftContainer'>
-
+                        <div className = 'plantHeaderContainer'>
+                            <div className = 'plantHeader'> How many </div>
+                            <div className = 'plantHeader' style = {{color: '#9dba94'}}> NFTrees </div>
+                            <div className = 'plantHeader'> would you like to plant? </div>
+                        </div>
                         <div>
                             {displayTreeMenu()}
                         </div>
