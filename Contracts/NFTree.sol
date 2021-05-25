@@ -13,12 +13,18 @@ contract NFTree is Ownable, ERC721URIStorage{
     uint256 public currentPrice;
     bool public locked;
     uint256 tokenId;
+    IERC20[] tokenList;
+
     constructor() ERC721('NFTree', 'TREE')
     {
         hardCap = 1000;
         currentPrice = 1 * (10 ** 18); // 1 ether
         locked = false;
         tokenId = 1;
+    }
+
+    function addToken(address _address) public onlyOwner{
+        tokenList.push(IERC20(_address));
     }
 
     function buyNFTree(string memory tokenHash) public payable {
