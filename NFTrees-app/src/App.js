@@ -40,18 +40,19 @@ function App() {
     // initialize web3 and load blockchain data
     load();
 
-    // reload on metamask accountsChanged event
-    window.ethereum.on('accountsChanged', function (accounts) {
-      load(); 
-    });
+    if(window.ethereum){
+      // reload on metamask accountsChanged event
+      window.ethereum.on('accountsChanged', function (accounts) {
+        load(); 
+      });
 
-    // reload on metamask networkChanged event
-    window.ethereum.on('networkChanged', function (accounts) {
-      load();
-    });
+      // reload on metamask networkChanged event
+      window.ethereum.on('networkChanged', function (accounts) {
+        window.location.reload();
+      });
+    }
 
     setLoading(false);
-    console.log('end')
   }, []);
 
   /* ethereum initialization functions */
@@ -125,8 +126,6 @@ function App() {
       /* do not know why i need to do this */
       let contract = await new web3.eth.Contract(NFTreeABI.abi, networkData.address);
       setNextTokenId(await contract.methods.getNextTokenId().call());
-    }else{
-      //window.alert('Contract Not Deployed')
     }
   }
 

@@ -11,7 +11,7 @@ function Plant (props){
     const[totalCost, setTotalCost] = useState(1);
     const[tipMenuOpen, setTipMenuOpen] = useState(false);
     const[coinMenuOpen, setCoinMenuOpen] = useState(false);
-    const[totel, setTotal] = useState(0);
+    const[total, setTotal] = useState(0);
 
     useEffect (() => {
         document.body.addEventListener('click', function(e){
