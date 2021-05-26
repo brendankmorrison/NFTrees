@@ -27,7 +27,7 @@ contract NFTree is Ownable, ERC721URIStorage{
         tokenList.push(IERC20(_address));
     }
 
-    function buyNFTree(string memory tokenHash) public payable {
+    /*function buyNFTree(string memory tokenHash) public payable {
         require(!locked, 'Buying NFTrees is locked.');
         require(msg.sender != address(0) && msg.sender != address(this), 'error');
         require(msg.value >= currentPrice, 'Not enough ether.');
@@ -36,6 +36,10 @@ contract NFTree is Ownable, ERC721URIStorage{
         _safeMint(msg.sender, tokenId);
         _setTokenURI(tokenId, tokenHash); 
         tokenId = tokenId + 1; 
+    }*/
+
+    function buyNFTree(string memory tokenHash) public payable {
+        
     }
 
     function tokensOfOwner(address _owner) external view returns(uint256[] memory) {
@@ -73,14 +77,6 @@ contract NFTree is Ownable, ERC721URIStorage{
     
     function getContractBalance() public view returns(uint256){
         return(address(this).balance);
-    }
-
-    function setCurrentPrice(uint256 _currentPrice) public onlyOwner {
-        currentPrice = _currentPrice * (10 ** 18);
-    }
-    
-    function getCurrentPrice() public view returns(uint256){
-        return(currentPrice);
     }
 
     function getNextTokenId() public view returns(uint256){
