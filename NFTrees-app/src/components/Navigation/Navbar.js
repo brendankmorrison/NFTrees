@@ -33,7 +33,7 @@ function Navbar (props){
             <p className = 'spacer'/>
             <NavHashLink exact smooth activeClassName = "active-navbar-Link my-auto" className = "navbar-Link my-auto" to = '/#plant'> Plant </NavHashLink>
             <p className = 'spacer'/>
-            <NavLink exact activeClassName = "active-navbar-Link my-auto" className = "navbar-Link my-auto" to = '/wallet'> Wallet </NavLink>
+            <NavLink exact activeClassName = "active-navbar-Link my-auto" className = "navbar-Link my-auto" to = '/wallet'> My impact </NavLink>
             <p className = 'spacer'/>
             <NavLink exact activeClassName = "active-navbar-Link my-auto" className = "navbar-Link my-auto" to = '/about'> About </NavLink>
             <p className = 'spacer'/>

@@ -11,16 +11,16 @@ function Home (props){
             <div className = 'homeContent'>
                 <div className = 'homeLeft'>
                     <div className = 'homeHeaderContainer'> 
-                        <div className = 'homeHeader'> Help reduce Ethereum carbon emmissions by planting <span style = {{color: '#9dba94', fontSize: '30px'}}> NFTrees </span></div>
+                        <div className = 'homeHeader'> Help reduce Ethereum carbon emmissions by minting <span style = {{color: '#9dba94', fontSize: '30px'}}> NFTrees </span></div>
                     
                     </div>
                     <div className = 'line'></div>
                     <p>
-                        NFTrees is the first carbon negative non-fungible token digital art collection. 100% of the proceeds will 
-                        be donated to plant trees all over the world. Each token is proof of donation, and the 
-                        corresponding number of trees planted is designatd on the top left corner of the card.  
+                        NFTrees is the first NFT-based carbon capture platform.
+                        Bringing verifiable carbon credits to the cryptocurrency space.
+                        Displace your carbon emmissions with NFTrees.
                     </p>
-                    <NavHashLink exact smooth className = "plant-Link my-auto" to = '/#plant'> Plant NFTree </NavHashLink>
+                    <a className = "plant-Link" href =  'https://carbon.fyi/' target = '_blank'> Calculate your emissions </a>
                     <p></p>
                 </div>
                 <div className = 'spacer'></div>
