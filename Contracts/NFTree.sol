@@ -2,43 +2,62 @@
 
 pragma solidity ^0.8.2;
 
-import "./OpenZepplin/token/ERC721/extensions/ERC721URIStorage.sol";
-import "./OpenZepplin/token/ERC20/IERC20.sol";
-import "./OpenZepplin/access/Ownable.sol";
+
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/IERC20.sol";
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol";
 
 /* Contract for NFtrees */
 
 contract NFTree is Ownable, ERC721URIStorage{
-    uint256 public hardCap;
-    uint256 public currentPrice;
-    bool public locked;
     uint256 tokenId;
-    IERC20[] tokenList;
+    mapping(string => IERC20) coins;
+    address donationWallet;
+    address tipWallet;
 
     constructor() ERC721('NFTree', 'TREE')
     {
-        hardCap = 1000;
-        currentPrice = 1 * (10 ** 18); // 1 ether
-        locked = false;
         tokenId = 1;
     }
 
-    function addToken(address _address) public onlyOwner{
-        tokenList.push(IERC20(_address));
+    function addToken(address _address, string memory _coin) public onlyOwner{
+        coins[_coin] = IERC20(_address);
+    }
+    
+    function setDonationWallet(address _address) public onlyOwner{
+        
+    }
+    
+    function setTipWallet(address _address) public onlyOwner{
+        
     }
 
-    /*function buyNFTree(string memory tokenHash) public payable {
-        require(!locked, 'Buying NFTrees is locked.');
+    function buyNFTree(uint256 _amount, uint256 _tip, string memory _coin) public payable {
         require(msg.sender != address(0) && msg.sender != address(this), 'error');
-        require(msg.value >= currentPrice, 'Not enough ether.');
-        require(!_exists(tokenId), 'Token already minted.');
-        require(tokenId <= hardCap, 'Sale has ended.');
+        require(coins[_coin].balanceOf(msg.sender) >= _amount + _tip, 'not enough balance');
+        require(coins[_coin].allowance(msg.sender, address(this)) >= _amount + _tip, 'not enough balance');
+        
+        // transfer tokens
+        coins[_coin].transferFrom(msg.sender, 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2, _amount);
+        coins[_coin].transferFrom(msg.sender, 0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db, _tip);
+        
         _safeMint(msg.sender, tokenId);
-        _setTokenURI(tokenId, tokenHash); 
+        
+        if(_amount == 1){
+            //_setTokenURI(tokenId, tokenHash); 
+        } else if (_amount == 10){
+            //_setTokenURI(tokenId, tokenHash); 
+        } else if (_amount == 10){
+            //_setTokenURI(tokenId, tokenHash); 
+        } else if (_amount == 10){
+            //_setTokenURI(tokenId, tokenHash); 
+        } else {
+            //_setTokenURI(tokenId, tokenHash); 
+        }
+        
+        // add to total carbon offset log
+        
         tokenId = tokenId + 1; 
-    }*/
-
-    function buyNFTree(string memory tokenHash) public payable {
         
     }
 
@@ -83,15 +102,4 @@ contract NFTree is Ownable, ERC721URIStorage{
         return(tokenId);
     }
 
-    function unlock() public onlyOwner {
-        require(locked, 'Contract is unlocked.');
-        locked = false;
-    }
-
-    function lock() public onlyOwner {
-        require(!locked, 'Contract is locked.');
-        locked = true;
-    }
 }
-
-

@@ -2,7 +2,7 @@
 
 pragma solidity ^0.8.0;
 
-import "./OpenZepplin/token/ERC20/ERC20.sol";
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol";
 
 contract Mycoin is ERC20{
 
@@ -10,6 +10,6 @@ contract Mycoin is ERC20{
     }
 
     function mint(address myaddress) public payable{
-        _mint(myaddress, 10000000000);
+        _mint(myaddress, 1000);
     }
 }
