@@ -47,7 +47,8 @@ function App() {
 
       // reload on metamask networkChanged event
       window.ethereum.on('networkChanged', function (accounts) {
-        window.location.reload();
+        load();
+        //window.location.reload();
       });
     }
 
@@ -88,6 +89,8 @@ function App() {
       setIsConnected(false);
       setCurrentaccount('wrong network');
     }
+
+    console.log(isConnected);
   }
 
   const connectWallet = async () => {
