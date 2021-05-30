@@ -3,7 +3,7 @@ import './BuyNFTree.css';
 
 function BuyNFTree (props){
     const handleBuyNFTree = async () => {
-        if(props.isConnected()){
+        if(props.isConnected){
             props.mintToken();
         }
         else {

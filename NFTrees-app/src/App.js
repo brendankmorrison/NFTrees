@@ -24,7 +24,7 @@ import ScrollToTop from './components/Pages/PageItems/ScrollToTop';
 
 function App() {
   const[Currentaccount, setCurrentaccount] = useState("connect eth account.");
-  const[Secondaccount, setSecondaccount] = useState("connect eth account.");
+  const[isConnected, setIsConnected] = useState(false)
   const[Currentnetwork, setCurrentnetwork] = useState(0);
   const[NFTreeContract, setNFTreeContract] = useState();
   const[MycoinContract, setMycoinContract] = useState();
@@ -34,7 +34,6 @@ function App() {
   useEffect(() => {
     const load = async () => {
       await loadWeb3();
-      await loadBlockchainData();
     };
 
     // initialize web3 and load blockchain data
@@ -43,7 +42,7 @@ function App() {
     if(window.ethereum){
       // reload on metamask accountsChanged event
       window.ethereum.on('accountsChanged', function (accounts) {
-        load(); 
+        load();
       });
 
       // reload on metamask networkChanged event
@@ -61,13 +60,28 @@ function App() {
   const loadWeb3 = async () => {
     if(window.ethereum) {
       window.web3 = new Web3(window.ethereum);
+      loadBlockchainData();
     } else if (window.web3) {
       window.web3 = new Web3(window.web3.currentProvider);
+      loadBlockchainData();
     } else {
       window.alert(
         'no ethereum wallet detected.'
       );
     }
+  }
+
+  const checkConnection = async () => {
+    // fetch user eth account
+    const accounts = await window.web3.eth.getAccounts();
+    const account = accounts[0];
+    // set current account to account[0] if unlocked
+    if (account){
+      console.log(account)
+      setIsConnected(true);
+      setCurrentaccount(account);
+    }
+
   }
 
   const connectWallet = async () => {
@@ -81,14 +95,7 @@ function App() {
         'no ethereum wallet detected.'
       );
     }
-
-    // fetch user eth account
-    const accounts = await window.web3.eth.getAccounts();
-    const account = accounts[0];
-    // set current account to account[0] if unlocked
-    if (account){
-      setCurrentaccount(account);
-    }
+    checkConnection();
   }
 
   // load ethereum accounts, network, and smart contracts 
@@ -96,13 +103,7 @@ function App() {
     // initialize web3
     const web3 = window.web3;
     
-    // fetch user eth account
-    const accounts = await web3.eth.getAccounts();
-    const account = accounts[0];
-    // set current account to account[0] if unlocked
-    if (account){
-      setCurrentaccount(account);
-    }
+    checkConnection();
 
     // get networkId, display error if networkId != 1 (ethereum mainnet)
     // 1337 local host
@@ -120,8 +121,6 @@ function App() {
       
       setNFTreeContract(await new web3.eth.Contract(NFTreeABI.abi, networkData.address));
       setMycoinContract(await new web3.eth.Contract(MycoinABI.abi, networkData2.address));
-      console.log(NFTreeContract);
-      console.log(MycoinContract);
 
       /* do not know why i need to do this */
       let contract = await new web3.eth.Contract(NFTreeABI.abi, networkData.address);
@@ -129,13 +128,12 @@ function App() {
     }
   }
 
-  const isConnected = async () => {
-    return(
-      window.ethereum.isConnected()// doesnt work if you disconnect
-    )
-  }
-
   /* smart contract interaction functions */
+
+  const approveTokens = async (total) => {
+    const contractAddress = NFTreeABI.networks[Currentnetwork].address;
+    await MycoinContract.methods.approve(contractAddress, total).send({from: Currentaccount});
+  }
 
   const mintToken = async () => {
     // get next metadata hash
@@ -209,7 +207,7 @@ function App() {
               <button onClick = {balance}> balance </button>
               <button onClick = {transfer}> transfer </button>
               <div className = 'space'></div>
-              <Plant mintToken = {mintToken} isConnected = {isConnected}/>
+              <Plant mintToken = {mintToken} isConnected = {isConnected} approveTokens = {approveTokens}/>
               <Footer />
             </div>
           </Route>

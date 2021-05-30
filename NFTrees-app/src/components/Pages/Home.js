@@ -2,7 +2,6 @@ import React from 'react';
 import './Home.css';
 import sample from './art/sample1-text.jpg';
 import { NavHashLink } from 'react-router-hash-link';
-import './background1.jpeg';
 
 function Home (props){
 

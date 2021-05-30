@@ -1,6 +1,7 @@
 import React ,{useEffect, useState} from 'react';
 import './Plant.css';
 import BuyNFTree from './PageItems/BuyNFTree';
+import ApproveTokens from './PageItems/ApproveTokens';
 import sample from './art/sample1-text.jpg';
 import { RiContrastDropLine } from 'react-icons/ri';
 
@@ -192,6 +193,7 @@ function Plant (props){
 
                             <div className = 'totalContainer'>
                                 <p className = 'total'> Total = {calculateTotal()} {Coin} </p>
+                                <ApproveTokens approveTokens = {props.approveTokens} isConnected = {props.isConnected}/>
                                 <BuyNFTree mintToken = {props.mintToken} isConnected = {props.isConnected}/>
                             </div>
                         </div>
