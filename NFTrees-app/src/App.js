@@ -25,11 +25,11 @@ import ScrollToTop from './components/Pages/PageItems/ScrollToTop';
 function App() {
   const[Currentaccount, setCurrentaccount] = useState("connect eth account.");
   const[isConnected, setIsConnected] = useState(false)
-  const[Currentnetwork, setCurrentnetwork] = useState(0);
   const[NFTreeContract, setNFTreeContract] = useState();
   const[MycoinContract, setMycoinContract] = useState();
   const[nextTokenId, setNextTokenId] = useState();
   const[isLoading, setLoading] = useState(true);
+  var networkId;
 
   useEffect(() => {
     const load = async () => {
@@ -77,11 +77,17 @@ function App() {
     const account = accounts[0];
     // set current account to account[0] if unlocked
     if (account){
-      console.log(account)
       setIsConnected(true);
       setCurrentaccount(account);
     }
 
+    // get networkId, display error if networkId != 1 (ethereum mainnet)
+    // 1337 local host
+    networkId = await window.web3.eth.net.getId()
+    if(networkId !== 5777){
+      setIsConnected(false);
+      setCurrentaccount('wrong network');
+    }
   }
 
   const connectWallet = async () => {
@@ -95,7 +101,7 @@ function App() {
         'no ethereum wallet detected.'
       );
     }
-    checkConnection();
+    await checkConnection();
   }
 
   // load ethereum accounts, network, and smart contracts 
@@ -103,22 +109,14 @@ function App() {
     // initialize web3
     const web3 = window.web3;
     
-    checkConnection();
-
-    // get networkId, display error if networkId != 1 (ethereum mainnet)
-    // 1337 local host
-    const networkId = await web3.eth.net.getId();
-    if(networkId !== 5777){
-      setCurrentaccount('wrong network');
-      setCurrentnetwork(networkId);
-    }
+    // check
+    await checkConnection();
 
     // get smart contracts
     const networkData = NFTreeABI.networks[networkId];
     const networkData2 = MycoinABI.networks[networkId];
 
     if(networkData){
-      
       setNFTreeContract(await new web3.eth.Contract(NFTreeABI.abi, networkData.address));
       setMycoinContract(await new web3.eth.Contract(MycoinABI.abi, networkData2.address));
 
@@ -131,8 +129,10 @@ function App() {
   /* smart contract interaction functions */
 
   const approveTokens = async (total) => {
-    const contractAddress = NFTreeABI.networks[Currentnetwork].address;
-    await MycoinContract.methods.approve(contractAddress, total).send({from: Currentaccount});
+    //console.log(total);
+    //const contractAddress = NFTreeABI.networks[Currentnetwork].address;
+    //console.log(contractAddress);
+    /*await MycoinContract.methods.approve(contractAddress, total).send({from: Currentaccount});*/
   }
 
   const mintToken = async () => {

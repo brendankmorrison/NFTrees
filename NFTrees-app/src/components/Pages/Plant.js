@@ -38,7 +38,7 @@ function Plant (props){
     }, []);
 
     function displayContent (){
-        if (NumTrees == 1){
+        if (NumTrees === 1){
             return(
                 <p>
                     Plant 1 NFTree, offsetting X cubic meters of carbon per year, and Recieve
@@ -46,7 +46,7 @@ function Plant (props){
                 </p>
             )
         }
-        else if(NumTrees == 5){
+        else if(NumTrees === 5){
             return(
                 <p>
                     Plant 5 NFTrees, offsetting X cubic meters of carbon per year, and Recieve
@@ -54,7 +54,7 @@ function Plant (props){
                 </p>
             )
         }
-        else if(NumTrees == 10){
+        else if(NumTrees === 10){
             return(
                 <p>
                     Plant 10 NFTrees, offsetting X cubic meters of carbon per year, and Recieve
@@ -62,7 +62,7 @@ function Plant (props){
                 </p>
             )
         }
-        else if(NumTrees == 100){
+        else if(NumTrees === 100){
             return(
                 <p>
                     Plant 100 NFTrees, offsetting X cubic meters of carbon per year, and Recieve
@@ -70,7 +70,7 @@ function Plant (props){
                 </p>
             )
         }
-        else if(NumTrees == 1000){
+        else if(NumTrees === 1000){
             return(
                 <p>
                     Plant 1000 NFTrees, offsetting X cubic meters of carbon per year, and Recieve
@@ -78,7 +78,7 @@ function Plant (props){
                 </p>
             )
         }
-        else if(NumTrees == 10000){
+        else if(NumTrees === 10000){
             return(
                 <p>
                     Plant 10000 NFTrees, offsetting X cubic meters of carbon per year, and Recieve
@@ -193,7 +193,7 @@ function Plant (props){
 
                             <div className = 'totalContainer'>
                                 <p className = 'total'> Total = {calculateTotal()} {Coin} </p>
-                                <ApproveTokens approveTokens = {props.approveTokens} isConnected = {props.isConnected}/>
+                                <ApproveTokens approveTokens = {props.approveTokens} isConnected = {props.isConnected} total = {calculateTotal()}/>
                                 <BuyNFTree mintToken = {props.mintToken} isConnected = {props.isConnected}/>
                             </div>
                         </div>
