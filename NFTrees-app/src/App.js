@@ -18,18 +18,18 @@ import Navbar from './components/Navigation/Navbar';
 import Home from './components/Pages/Home';
 import Plant from './components/Pages/Plant';
 import Wallet from './components/Pages/Wallet';
+import Emissions from './components/Pages/Emissions';
 import About from './components/Pages/About';
 import Footer from './components/Pages/Footer';
 import ScrollToTop from './components/Pages/PageItems/ScrollToTop';
 
 function App() {
   const[Currentaccount, setCurrentaccount] = useState("connect eth account.");
-  const[isConnected, setIsConnected] = useState(false)
+  const[Currentnetwork, setCurrentnetwork] = useState();
   const[NFTreeContract, setNFTreeContract] = useState();
   const[MycoinContract, setMycoinContract] = useState();
-  const[nextTokenId, setNextTokenId] = useState();
+  const[isConnected, setIsConnected] = useState(false);
   const[isLoading, setLoading] = useState(true);
-  var networkId;
 
   useEffect(() => {
     const load = async () => {
@@ -53,7 +53,7 @@ function App() {
     }
 
     setLoading(false);
-  }, []);
+  },[]);
 
   /* ethereum initialization functions */
 
@@ -84,13 +84,14 @@ function App() {
 
     // get networkId, display error if networkId != 1 (ethereum mainnet)
     // 1337 local host
-    networkId = await window.web3.eth.net.getId()
+    const networkId = await window.web3.eth.net.getId()
     if(networkId !== 5777){
       setIsConnected(false);
       setCurrentaccount('wrong network');
+      setCurrentnetwork(networkId);
+    } else {
+      setCurrentnetwork(networkId);
     }
-
-    console.log(isConnected);
   }
 
   const connectWallet = async () => {
@@ -116,58 +117,27 @@ function App() {
     await checkConnection();
 
     // get smart contracts
-    const networkData = NFTreeABI.networks[networkId];
-    const networkData2 = MycoinABI.networks[networkId];
+    const networkData = NFTreeABI.networks[await window.web3.eth.net.getId()];
+    const networkData2 = MycoinABI.networks[await window.web3.eth.net.getId()];
 
     if(networkData){
       setNFTreeContract(await new web3.eth.Contract(NFTreeABI.abi, networkData.address));
       setMycoinContract(await new web3.eth.Contract(MycoinABI.abi, networkData2.address));
-
-      /* do not know why i need to do this */
-      let contract = await new web3.eth.Contract(NFTreeABI.abi, networkData.address);
-      setNextTokenId(await contract.methods.getNextTokenId().call());
     }
   }
 
   /* smart contract interaction functions */
 
   const approveTokens = async (total) => {
-    //console.log(total);
-    //const contractAddress = NFTreeABI.networks[Currentnetwork].address;
-    //console.log(contractAddress);
-    /*await MycoinContract.methods.approve(contractAddress, total).send({from: Currentaccount});*/
+    const contractAddress = NFTreeABI.networks[Currentnetwork].address;
+    await MycoinContract.methods.approve(contractAddress, total).send({from: Currentaccount});
   }
 
   const mintToken = async () => {
-    // get next metadata hash
-
     // call buyNFTree function
     await NFTreeContract.methods.buyNFTree('QmfUShAbxfXecoxySb9JiMH1Lb8URUw2Cse9Usj5vZmeej').send({from: Currentaccount, value: 10**18});
     //await NFTreeContract.methods.sendTo(Currentaccount).send({from: Currentaccount});
     console.log('contract balance', await NFTreeContract.methods.getContractBalance().call());
-
-    // if transaction went through mark metadata hash as used
-
-    // update next token id
-    setNextTokenId(await NFTreeContract.methods.getNextTokenId().call());
-  }
-
-  const mint = async () => {
-    await MycoinContract.methods.mint(Currentaccount).send({from: Currentaccount, value: 0});
-    console.log(await MycoinContract.methods.totalSupply().call())
-    console.log(await MycoinContract.methods.balanceOf(Currentaccount).call())
-
-  }
-
-  const balance = async () => {
-    console.log(await MycoinContract.methods.balanceOf(Currentaccount).call())
-
-  }
-
-  const transfer = async () => {
-    await MycoinContract.methods.transfer('0x2e5228Ab51087B6FFD54F63af375Ebb2d2094e3F', 10000).send({from: Currentaccount, value: 0});
-    console.log(await MycoinContract.methods.balanceOf('0x2e5228Ab51087B6FFD54F63af375Ebb2d2094e3F').call())
-
   }
 
   const searchAddress = async () => {
@@ -188,12 +158,27 @@ function App() {
   }
 
   const getToken = async (tokenId) => {
-    //fetch(await NFTreeContract.methods.tokenURI(1).call())
-      //.then(response => response.json())
-      //.then(data => console.log(data));
     console.log('getToken');
     return(await NFTreeContract.methods.tokenURI(1).call());
     
+  }
+
+  const mint = async () => {
+    await MycoinContract.methods.mint(Currentaccount).send({from: Currentaccount, value: 0});
+    console.log(await MycoinContract.methods.totalSupply().call())
+    console.log(await MycoinContract.methods.balanceOf(Currentaccount).call())
+
+  }
+
+  const balance = async () => {
+    console.log(await MycoinContract.methods.balanceOf(Currentaccount).call())
+
+  }
+
+  const transfer = async () => {
+    await MycoinContract.methods.transfer('0x2e5228Ab51087B6FFD54F63af375Ebb2d2094e3F', 10000).send({from: Currentaccount, value: 0});
+    console.log(await MycoinContract.methods.balanceOf('0x2e5228Ab51087B6FFD54F63af375Ebb2d2094e3F').call())
+
   }
 
   return (
@@ -205,7 +190,7 @@ function App() {
             <Landing/>
             <div className= 'home'>
               <Navbar account = {Currentaccount} connectWallet = {connectWallet}/>
-              <Home mintToken = {mintToken} nextTokenId = {nextTokenId}/>
+              <Home/>
               <button onClick = {mint}> mint eth </button>
               <button onClick = {balance}> balance </button>
               <button onClick = {transfer}> transfer </button>
@@ -219,6 +204,13 @@ function App() {
             <ScrollToTop/>
             <Navbar account = {Currentaccount} connectWallet = {connectWallet}/>
             <Wallet getToken = {getToken} searchAddress = {searchAddress}/>
+            <Footer />
+          </Route>
+
+          <Route path="/emissions">
+            <ScrollToTop/>
+            <Navbar account = {Currentaccount} connectWallet = {connectWallet}/>
+            <Emissions address = {Currentaccount}/>
             <Footer />
           </Route>
 

@@ -15,7 +15,7 @@ function Landing (props){
             <div className = 'comingSoon'> Please continue to this site on a computer, mobile site coming soon. </div>
             <div className = 'arrowContainer'>
                 <HashLink exact smooth className = "arrow my-auto" to = '/#home'>
-                <BsChevronCompactDown size = '40' className = 'icon'/>
+                <BsChevronCompactDown size = {40} className = 'icon'/>
                 </HashLink>
             </div>
             </div>

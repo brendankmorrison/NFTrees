@@ -1,7 +1,6 @@
 import React from 'react';
 import './Home.css';
 import sample from './art/sample1-text.jpg';
-import { NavHashLink } from 'react-router-hash-link';
 
 function Home (props){
 
@@ -19,7 +18,7 @@ function Home (props){
                         Bringing verifiable carbon credits to the cryptocurrency space.
                         Displace your carbon emmissions with NFTrees.
                     </p>
-                    <a className = "plant-Link" href =  'https://carbon.fyi/' target = '_blank'> Calculate your emissions </a>
+                    <a className = "plant-Link" href =  'https://carbon.fyi/' target = '_blank' rel="noopener noreferrer"> Calculate your emissions </a>
                     <p></p>
                 </div>
                 <div className = 'spacer'></div>

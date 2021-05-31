@@ -35,6 +35,8 @@ function Navbar (props){
             <p className = 'spacer'/>
             <NavLink exact activeClassName = "active-navbar-Link my-auto" className = "navbar-Link my-auto" to = '/wallet'> My impact </NavLink>
             <p className = 'spacer'/>
+            <NavLink exact activeClassName = "active-navbar-Link my-auto" className = "navbar-Link my-auto" to = '/emissions'> Emissions </NavLink>
+            <p className = 'spacer'/>
             <NavLink exact activeClassName = "active-navbar-Link my-auto" className = "navbar-Link my-auto" to = '/about'> About </NavLink>
             <p className = 'spacer'/>
 

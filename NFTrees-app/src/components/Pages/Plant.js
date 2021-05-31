@@ -92,12 +92,12 @@ function Plant (props){
     function displayTreeMenu (){
         return(
             <div className = 'buttonContainer'>
-                <button className = {NumTrees == 1 ? 'activeTreeButton': 'treeButton'} onClick = {() => setNumTrees(1)} > 1 </button>
-                <button className = {NumTrees == 5 ? 'activeTreeButton': 'treeButton'} onClick = {() => setNumTrees(5)}> 5 </button>
-                <button className = {NumTrees == 10 ? 'activeTreeButton': 'treeButton'} onClick = {() => setNumTrees(10)}> 10 </button>
-                <button className = {NumTrees == 100 ? 'activeTreeButton': 'treeButton'} onClick = {() => setNumTrees(100)}> 100 </button>
-                <button className = {NumTrees == 1000 ? 'activeTreeButton': 'treeButton'} onClick = {() => setNumTrees(1000)}> 1000 </button>
-                <button className = {NumTrees == 10000 ? 'activeTreeButton': 'treeButton'} onClick = {() => setNumTrees(10000)}> 10000</button>
+                <button className = {NumTrees === 1 ? 'activeTreeButton': 'treeButton'} onClick = {() => setNumTrees(1)} > 1 </button>
+                <button className = {NumTrees === 5 ? 'activeTreeButton': 'treeButton'} onClick = {() => setNumTrees(5)}> 5 </button>
+                <button className = {NumTrees === 10 ? 'activeTreeButton': 'treeButton'} onClick = {() => setNumTrees(10)}> 10 </button>
+                <button className = {NumTrees === 100 ? 'activeTreeButton': 'treeButton'} onClick = {() => setNumTrees(100)}> 100 </button>
+                <button className = {NumTrees === 1000 ? 'activeTreeButton': 'treeButton'} onClick = {() => setNumTrees(1000)}> 1000 </button>
+                <button className = {NumTrees === 10000 ? 'activeTreeButton': 'treeButton'} onClick = {() => setNumTrees(10000)}> 10000</button>
             </div>
             )
     }
