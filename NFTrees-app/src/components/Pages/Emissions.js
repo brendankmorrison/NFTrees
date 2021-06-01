@@ -29,7 +29,6 @@ function Emissions (props){
             console.log(totalKg);
             console.log(totalTransactions);
         console.log('done loading');
-
     }
     
     return(

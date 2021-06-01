@@ -1,6 +1,7 @@
 import React from 'react';
 import './Home.css';
 import sample from './art/sample1-text.jpg';
+import {NavLink} from "react-router-dom";
 
 function Home (props){
 
@@ -18,7 +19,7 @@ function Home (props){
                         Bringing verifiable carbon credits to the cryptocurrency space.
                         Displace your carbon emmissions with NFTrees.
                     </p>
-                    <a className = "plant-Link" href =  'https://carbon.fyi/' target = '_blank' rel="noopener noreferrer"> Calculate your emissions </a>
+                    <NavLink exact className = "plant-Link" to = '/myimpact'> Calculate your emissions </NavLink>
                     <p></p>
                 </div>
                 <div className = 'spacer'></div>

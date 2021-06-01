@@ -10,7 +10,7 @@ function Landing (props){
     return(
         <div className = 'landingContainer' id = 'landing'>
             <div className = 'landingContent'>
-            <CountUp className = 'treeCountNumber' end = {10000} duration = {4} separator = {','}/>
+            <CountUp className = 'treeCountNumber' end = {10000} duration = {2} separator = {','}/>
             <div className = 'treeCount'> tonnes of CO2 displaced </div>
             <div className = 'comingSoon'> Please continue to this site on a computer, mobile site coming soon. </div>
             <div className = 'arrowContainer'>
