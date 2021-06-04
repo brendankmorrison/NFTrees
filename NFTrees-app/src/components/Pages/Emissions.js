@@ -1,6 +1,7 @@
 import React from 'react';
 import './Emissions.css';
 import { calculateAddressEmissions } from "ethereum-emissions-calculator";
+import CountUp from 'react-countup';
 
 
 function Emissions (props){
@@ -32,7 +33,7 @@ function Emissions (props){
     }
     
     return(
-        <div className = 'emissionsContainer'>
+        <div className = 'emissionsContainer' id = 'emissions'>
             <button onClick = {handleCalculateEmissions}> calculate emissions</button>
         </div>
     );

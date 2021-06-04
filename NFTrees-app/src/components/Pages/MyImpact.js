@@ -3,7 +3,8 @@ import NFTreeCard from './PageItems/NFTreeCard';
 import './MyImpact.css';
 import sample from './art/sample1-text.jpg';
 import { calculateAddressEmissions } from "ethereum-emissions-calculator";
-import CountUp from 'react-countup';
+import { NavHashLink } from 'react-router-hash-link';
+import {BsChevronCompactDown} from 'react-icons/bs';
 
 function MyImpact (props){
     const [images, setImages] = useState([]);
@@ -11,7 +12,6 @@ function MyImpact (props){
 
     useEffect(() => {
         handleSearch();
-        handleCalculateEmissions();
     }, [])
 
     const handleSearch = async () => {
@@ -37,40 +37,9 @@ function MyImpact (props){
         setImages(tokenImages);
     }
 
-    const handleCalculateEmissions = async () => {
-        const address = props.address;
-        var apiKey = '4QBBENHPDFF6FAQGF8E71NFE9RNZH1MCPW';
-        var totalGas = 0;
-        var totalKg = 0;
-        var totalTransactions = 0;
-        var typeTransaction = ['eth', 'erc20', 'erc721'];
-        console.log('loading');
-        for (var i = 0; i < 3; i++) {
-            const emissions = await calculateAddressEmissions({
-                transactionType: typeTransaction[i],
-                address,
-                etherscanAPIKey: apiKey,
-            });
-            
-            totalGas += emissions['gasUsed'];
-            totalKg += emissions['kgCO2'];
-            totalTransactions += emissions['transactionsCount'];
-        }
-            console.log(totalGas);
-            console.log(totalKg);
-            console.log(totalTransactions);
-        setEmissions(totalKg);
-        console.log('done loading');
-    }
-
-    const handleCalculateOffset = async () => {
-
-    }
 
     return(
         <div className = 'walletContainer'>
-            <button onClick = {handleCalculateEmissions}> calculate emissions</button>
-            <CountUp className = '' end = {emissions} duration = {2} separator = {','}/>
             <div className = 'title'> Your NFTrees </div>
 
             {/*displayNFTrees()*/}
@@ -81,6 +50,12 @@ function MyImpact (props){
                     <div className = 'spacer'></div>
                     </div>
                 )}
+            </div>
+            <div className = "viewEmissions"> View emissions summary </div>
+            <div className = 'arrowContainer'>
+                <NavHashLink exact smooth className = "arrow" to = '/myimpact#emissions'>
+                <BsChevronCompactDown size = {40} className = 'icon'/>
+                </NavHashLink>
             </div>
         </div>
 

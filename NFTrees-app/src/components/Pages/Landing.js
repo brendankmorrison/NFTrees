@@ -1,8 +1,7 @@
 import React from 'react';
 import './Landing.css';
-import { HashLink } from 'react-router-hash-link';
+import { NavHashLink } from 'react-router-hash-link';
 import {BsChevronCompactDown} from 'react-icons/bs';
-import { IconContext } from "react-icons";
 import CountUp from 'react-countup';
 
 function Landing (props){
@@ -14,9 +13,9 @@ function Landing (props){
             <div className = 'treeCount'> tonnes of CO2 displaced </div>
             <div className = 'comingSoon'> Please continue to this site on a computer, mobile site coming soon. </div>
             <div className = 'arrowContainer'>
-                <HashLink exact smooth className = "arrow my-auto" to = '/#home'>
+                <NavHashLink exact smooth className = "arrow my-auto" to = '/#home'>
                 <BsChevronCompactDown size = {40} className = 'icon'/>
-                </HashLink>
+                </NavHashLink>
             </div>
             </div>
         </div>

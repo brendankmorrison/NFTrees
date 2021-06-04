@@ -17,12 +17,11 @@ import Landing from './components/Pages/Landing';
 import Navbar from './components/Navigation/Navbar';
 import Home from './components/Pages/Home';
 import Plant from './components/Pages/Plant';
-import Wallet from './components/Pages/MyImpact';
+import MyImpact from './components/Pages/MyImpact';
 import Emissions from './components/Pages/Emissions';
 import About from './components/Pages/About';
 import Footer from './components/Pages/Footer';
 import ScrollToTop from './components/Pages/PageItems/ScrollToTop';
-import MyImpact from './components/Pages/MyImpact';
 
 function App() {
   const[Currentaccount, setCurrentaccount] = useState("connect eth account.");
@@ -203,9 +202,14 @@ function App() {
 
           <Route path="/myimpact">
             <ScrollToTop/>
-            <Navbar account = {Currentaccount} connectWallet = {connectWallet}/>
-            <MyImpact getToken = {getToken} searchAddress = {searchAddress} address = {Currentaccount}/>
-            <Footer />
+            <div className= 'myimpact'>
+              <ScrollToTop/>
+              <Navbar account = {Currentaccount} connectWallet = {connectWallet}/>
+              <MyImpact getToken = {getToken} searchAddress = {searchAddress} address = {Currentaccount}/>
+              <div className = 'space'></div>
+              <Emissions/>
+              <Footer />
+            </div>
           </Route>
 
           <Route path="/about">
