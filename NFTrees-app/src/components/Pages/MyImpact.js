@@ -54,7 +54,7 @@ function MyImpact (props){
             <div className = "viewEmissions"> View emissions summary </div>
             <div className = 'arrowContainer'>
                 <NavHashLink exact smooth className = "arrow" to = '/myimpact#emissions'>
-                <BsChevronCompactDown size = {40} className = 'icon'/>
+                <BsChevronCompactDown size = {30} className = 'icon'/>
                 </NavHashLink>
             </div>
         </div>

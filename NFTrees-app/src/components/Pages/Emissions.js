@@ -31,10 +31,20 @@ function Emissions (props){
             console.log(totalTransactions);
         console.log('done loading');
     }
+
+    const handleCalculateOffset = async () => {
+
+    }
     
+    const handleCalculateNetEmissions = async () => {
+
+
+    }
+
     return(
         <div className = 'emissionsContainer' id = 'emissions'>
-            <button onClick = {handleCalculateEmissions}> calculate emissions</button>
+            <CountUp className = 'netEmissions' end = {-100} duration = {2}/>
+            <button onClick = {handleCalculateEmissions} className = 'runEmissionsSummary'> Run emissions summary </button>
         </div>
     );
 }

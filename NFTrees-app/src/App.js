@@ -201,9 +201,9 @@ function App() {
           </Route>
 
           <Route path="/myimpact">
+            <div id = 'myImpactTop'></div>
             <ScrollToTop/>
             <div className= 'myimpact'>
-              <ScrollToTop/>
               <Navbar account = {Currentaccount} connectWallet = {connectWallet}/>
               <MyImpact getToken = {getToken} searchAddress = {searchAddress} address = {Currentaccount}/>
               <div className = 'space'></div>

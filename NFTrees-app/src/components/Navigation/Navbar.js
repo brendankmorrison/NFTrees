@@ -27,15 +27,15 @@ function Navbar (props){
     return(
         <nav className = 'navbar'>
             {/* display navbar links */}
-            <NavHashLink exact smooth className = "navbar-Brand my-auto" to = '/#landing'> NFTrees </NavHashLink>
+            <NavHashLink exact smooth className = "navbar-Brand" to = '/#landing'> NFTrees </NavHashLink>
             <p className = 'spacer'/>
-            <NavHashLink exact smooth activeClassName = "active-navbar-Link my-auto" className = "navbar-Link my-auto" to = '/#home'> Home </NavHashLink>
+            <NavHashLink exact smooth activeClassName = "active-navbar-Link" className = "navbar-Link" to = '/#home'> Home </NavHashLink>
             <p className = 'spacer'/>
-            <NavHashLink exact smooth activeClassName = "active-navbar-Link my-auto" className = "navbar-Link my-auto" to = '/#plant'> Plant </NavHashLink>
+            <NavHashLink exact smooth activeClassName = "active-navbar-Link" className = "navbar-Link" to = '/#plant'> Plant </NavHashLink>
             <p className = 'spacer'/>
-            <NavLink exact activeClassName = "active-navbar-Link my-auto" className = "navbar-Link my-auto" to = '/myimpact'> My impact </NavLink>
+            <NavHashLink exact smooth activeClassName = "active-navbar-Link" className = "navbar-Link" to = '/myimpact#myImpactTop'> My impact </NavHashLink>
             <p className = 'spacer'/>
-            <NavLink exact activeClassName = "active-navbar-Link my-auto" className = "navbar-Link my-auto" to = '/about'> About </NavLink>
+            <NavLink exact activeClassName = "active-navbar-Link" className = "navbar-Link" to = '/about'> About </NavLink>
             <p className = 'spacer'/>
 
             {/* display user address */}
