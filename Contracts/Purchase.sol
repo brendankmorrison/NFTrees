@@ -14,12 +14,27 @@ contract Purchase is Ownable{
     address tipWallet;
     mapping(uint256 => string) tokenHash;
     uint256 totalOffset;
+    mapping(uint256 => bool) levels;
+    INFTree nftree;
 
     constructor()
     {
         offrampWallet = 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2;
         tipWallet = 0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db;
         totalOffset = 0;
+        levels[1] = true;
+        levels[10] = true;
+        levels[100] = true;
+        levels[1000] = true;
+        levels[10000] = true;
+    }
+    
+    function setNFTreeContract(address _nftreeContract) external{
+        nftree = INFTree(_nftreeContract);
+    }
+    
+    function callNFTreeFunction() external view returns(uint256){
+        return(nftree.getNextTokenId());
     }
 
     function addToken(address _address, string memory _coin) external onlyOwner{
@@ -54,6 +69,7 @@ contract Purchase is Ownable{
 
     function buyNFTree(uint256 _numCredits, uint256 _amount, uint256 _tip, string memory _coin) external {
         require(msg.sender != address(0) && msg.sender != address(this), 'Sending from zero address');
+        require(levels[_numCredits] == true, 'Not a valid level');
         require(coins[_coin].balanceOf(msg.sender) >= _amount + _tip, 'Not enough balance');
         require(_amount >= _numCredits * 10, 'Not enough value');
         require(coins[_coin].allowance(msg.sender, address(this)) >= _amount + _tip, 'Not enough allowance');
@@ -62,7 +78,7 @@ contract Purchase is Ownable{
         coins[_coin].transferFrom(msg.sender, offrampWallet, _amount);
         coins[_coin].transferFrom(msg.sender, tipWallet, _tip);
         
-        //_safeMint(msg.sender, tokenId);
+        nftree.buyNFTree(msg.sender, 'tokenuri');
         
         if(_numCredits == 1){
            

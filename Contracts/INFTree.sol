@@ -18,7 +18,7 @@ interface INFTree is IERC721 {
      * returns current purchase contract address
      *
      */
-    function getPurchaseCOntract() external view returns(address);
+    function getPurchaseContract() external view returns(address);
     
      /**
      * @dev Mints NFTree to 'recipient' and sets the token uri to 'tokenHash' 
